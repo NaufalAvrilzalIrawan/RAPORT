@@ -127,7 +127,7 @@
 
         if ($cek==1) {
             echo "<script>alert('Anda Berhasil Masuk');</script>";
-            echo "<script>window.location.replace('welcome.php') </script>";
+            echo "<script>window.location.replace('Dashboard.php?nisp=$user') </script>";
         }
         else {
             echo "<script>alert ('Username atau Password tidak valid. Kembali'); </script>";

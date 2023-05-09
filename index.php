@@ -120,7 +120,7 @@
         $user = mysqli_real_escape_string($koneksi, $user);
         $pass = mysqli_real_escape_string($koneksi, $pass);
 
-        $sql = "select * from user where NISNIP = '$user' and Password = '$pass'";
+        $sql = "select * from user where nisnip = '$user' and password = '$pass'";
         $hasil = mysqli_query($koneksi, $sql);
         $array = mysqli_fetch_array($hasil);
         $cek = mysqli_num_rows($hasil);

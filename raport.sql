@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2023 at 02:45 PM
+-- Generation Time: May 10, 2023 at 12:42 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.2.0
 
@@ -24,32 +24,61 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `suswa`
+--
+
+CREATE TABLE `suswa` (
+  `nis` int(10) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `kelas` varchar(10) NOT NULL,
+  `alamat` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `suswa`
+--
+
+INSERT INTO `suswa` (`nis`, `nama`, `kelas`, `alamat`) VALUES
+(212210420, 'Naufal Avrilzal Irawan', 'XI PPLG 1]', 'Jl. Caringin blk no. 16'),
+(212238902, 'Adnan Pekerjaan Rumah', 'XI ELEKTRO', 'Jl. Aqua Sabotol No. 5000');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
-  `NISNIP` int(20) NOT NULL,
-  `Password` varchar(15) NOT NULL,
-  `Nama` varchar(25) NOT NULL,
-  `Role` varchar(10) NOT NULL
+  `nisnip` int(20) NOT NULL,
+  `password` varchar(15) NOT NULL,
+  `nama` varchar(25) NOT NULL,
+  `role` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`NISNIP`, `Password`, `Nama`, `Role`) VALUES
-(1, 'jayaindonesia45', 'Naufal Avrilzal Irawan', 'Admin');
+INSERT INTO `user` (`nisnip`, `password`, `nama`, `role`) VALUES
+(1, 'jayaindonesia45', 'Naufal Avrilzal Irawan', 'Admin'),
+(123456789, '123', 'Asep Fernandes', 'Guru'),
+(212210420, '420', 'Naufal Avrilzal Irawan', 'Siswa');
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `suswa`
+--
+ALTER TABLE `suswa`
+  ADD PRIMARY KEY (`nis`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`NISNIP`);
+  ADD PRIMARY KEY (`nisnip`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

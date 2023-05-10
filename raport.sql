@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2023 at 12:42 PM
+-- Generation Time: May 10, 2023 at 01:47 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.2.0
 
@@ -20,6 +20,34 @@ SET time_zone = "+00:00";
 --
 -- Database: `raport`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pelajaran`
+--
+
+CREATE TABLE `pelajaran` (
+  `kode` int(11) NOT NULL,
+  `nama` varchar(55) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pelajaran`
+--
+
+INSERT INTO `pelajaran` (`kode`, `nama`) VALUES
+(1, 'Pendidikan Agama Islam'),
+(2, 'Pendidikan Pancasila dan\r\nKewarganegaraan'),
+(3, 'Bahasa Indonesia'),
+(4, 'Matematika'),
+(5, 'Ilmu Pengetahuan Alam '),
+(6, 'Ilmu Pengetahuan Sosial'),
+(7, 'Seni Budaya dan Prakarya'),
+(8, 'Pendidikan Jasmani,\r\nOlahraga, dan Kesehatan'),
+(9, 'Bahasa Sunda'),
+(10, 'PLH'),
+(11, 'Bahasa Inggris');
 
 -- --------------------------------------------------------
 
@@ -69,6 +97,12 @@ INSERT INTO `user` (`nisnip`, `password`, `nama`, `role`) VALUES
 --
 
 --
+-- Indexes for table `pelajaran`
+--
+ALTER TABLE `pelajaran`
+  ADD PRIMARY KEY (`kode`);
+
+--
 -- Indexes for table `suswa`
 --
 ALTER TABLE `suswa`
@@ -79,6 +113,16 @@ ALTER TABLE `suswa`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`nisnip`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `pelajaran`
+--
+ALTER TABLE `pelajaran`
+  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

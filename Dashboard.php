@@ -46,7 +46,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="welcome.php">
+                <a class="nav-link" href="Dashboard.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -69,8 +69,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data detail dari:</h6>
-                        <a class="collapse-item" href="tabel.php">Siswa</a>
-                        <a class="collapse-item" href="tabel.php">Nilai</a>
+                        <a class="collapse-item" href="tabelsiswa.php">Siswa</a>
+                        <a class="collapse-item" href="tabelnilai.php">Nilai</a>
                     </div>
                 </div>
             </li>
@@ -85,9 +85,9 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Nilai Detail dari:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Harian</a>
-                        <a class="collapse-item" href="utilities-border.html">PTS</a>
-                        <a class="collapse-item" href="utilities-animation.html">PAS</a>
+                        <a class="collapse-item" href="tabelhari.php">Harian</a>
+                        <a class="collapse-item" href="tabeluts.php">PTS</a>
+                        <a class="collapse-item" href="tabelpas.php">PAS</a>
                     </div>
                 </div>
             </li>
@@ -169,7 +169,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="profil.php">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>

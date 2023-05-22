@@ -69,8 +69,8 @@
                 <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data detail dari:</h6>
-                        <a class="collapse-item active" href="tabelsiswa.php">Siswa</a>
-                        <a class="collapse-item" href="tabelnilai.php">Nilai</a>
+                        <a class="collapse-item" href="tabelsiswa.php">Siswa</a>
+                        <a class="collapse-item active" href="tabelnilai.php">Nilai</a>
                     </div>
                 </div>
             </li>
@@ -209,10 +209,10 @@
                                             <th>No</th>
                                             <th>NIS</th>
                                             <th>Nama</th>
-                                            <th>Umur</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Agama</th>
-                                            <th>Kelas</th>
+                                            <th>Harian</th>
+                                            <th>UTS S1</th>
+                                            <th>PAS S1</th>
+                                            <th>UTS S2</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -221,10 +221,10 @@
                                             <th>No</th>
                                             <th>NIS</th>
                                             <th>Nama</th>
-                                            <th>Umur</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Agama</th>
-                                            <th>Kelas</th>
+                                            <th>Harian</th>
+                                            <th>UTS S1</th>
+                                            <th>PAS S1</th>
+                                            <th>UTS S2</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </tfoot>
@@ -239,10 +239,39 @@
                                         <tr><th> <?php echo $no; ?> </th>
                                             <td> <?php echo $data['nis']; ?></td>
                                             <td> <?php echo $data['nama']; ?></td>
-                                            <td> <?php echo $data['umur']; ?></td>
-                                            <td> <?php echo $data['gender']; ?></td>
-                                            <td> <?php echo $data['agama']; ?></td>
-                                            <td> <?php echo $data['kelas']; ?></td>
+                                            <!--memanggil rata-rata nilai-->
+                                            <td> <?php
+                                                    $jum = "SELECT Avg(harian) FROM nilai WHERE nis = $data[nis]";
+                                                    $haj = $koneksi->query($jum);
+
+                                                    while($row = mysqli_fetch_array($haj)) {
+                                                        echo $row['Avg(harian)'];
+                                                    }
+                                                ?></td>
+                                            <td> <?php
+                                                    $jum = "SELECT Avg(uts1) FROM nilai WHERE nis = $data[nis]";
+                                                    $haj = $koneksi->query($jum);
+
+                                                    while($row = mysqli_fetch_array($haj)) {
+                                                        echo $row['Avg(uts1)'];
+                                                    }
+                                                ?></td>
+                                            <td> <?php
+                                                    $jum = "SELECT Avg(pas1) FROM nilai WHERE nis = $data[nis]";
+                                                    $haj = $koneksi->query($jum);
+
+                                                    while($row = mysqli_fetch_array($haj)) {
+                                                        echo $row['Avg(pas1)'];
+                                                    }
+                                                ?></td>
+                                            <td> <?php
+                                                    $jum = "SELECT Avg(uts2) FROM nilai WHERE nis = $data[nis]";
+                                                    $haj = $koneksi->query($jum);
+
+                                                    while($row = mysqli_fetch_array($haj)) {
+                                                        echo $row['Avg(uts2)'];
+                                                    }
+                                                ?></td>
                                             <td> <?php echo "<a href='edit.php?nis=$data[nis]'>"?><input type="submit" name="ubah" value="ubah" class="btn btn-info btn-sm"></a> <?php echo "<a href='?nis=$data[nis]'>"?><input type="submit" name="hapus" value="hapus" class="btn btn-danger btn-sm"></a></td>
                                         </tr>
 

@@ -231,7 +231,7 @@
                                     <tbody>
                                     <?php
                                         $no = 1;
-                                        $queri = "select * from siswa";
+                                        $queri = "select * from siswa, nilai siswa.nis = nilai.nis";
                                         $hasil = mysqli_query($koneksi, $queri);
 
                                         while ($data = mysqli_fetch_array($hasil)) {

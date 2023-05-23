@@ -220,7 +220,7 @@
                             <tr>
                                 <th>UMUR</th>
                                 <td> : </td>
-                                <td> <?php echo $data['kelas']; ?> </td>
+                                <td> <?php echo $data['umur']; ?> Tahun</td>
                             </tr>
                             <tr>
                                 <th>JENIS KELAMIN</th>
@@ -298,7 +298,8 @@
                                                 }
                                                 else {
                                                     echo "Siswa dapat kurang menguasai materi";
-                                                }?></td>
+                                                }?>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th>2</th>
@@ -332,7 +333,8 @@
                                                 }
                                                 else {
                                                     echo "Siswa dapat kurang menguasai materi";
-                                                }?></td>
+                                                }?>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th>3</th>
@@ -366,22 +368,23 @@
                                                 }
                                                 else {
                                                     echo "Siswa dapat kurang menguasai materi";
-                                                }?></td>
+                                                }?>
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <th>3</th>
-                                            <td>Pendidikan Pancasila dan Kewarganegaraan</td>
+                                            <th>4</th>
+                                            <td>Ilmu Pengetahuan Alam dan Sosial</td>
                                             <td>75</td>
-                                            <td><?php echo $data['ak']; ?></td>
+                                            <td><?php echo $data['ipas']; ?></td>
                                             <td>
                                                 <?php 
-                                                if ($data['ak'] >= 90) {
+                                                if ($data['ipas'] >= 90) {
                                                     echo "A";
                                                 }
-                                                else if ($data['ak'] >= 80) {
+                                                else if ($data['ipas'] >= 80) {
                                                     echo "B";
                                                 }
-                                                else if ($data['ak'] >= 75) {
+                                                else if ($data['ipas'] >= 75) {
                                                     echo "C";
                                                 }
                                                 else {
@@ -389,18 +392,263 @@
                                                 }?>
                                             </td>
                                             <td><?php 
-                                                if ($data['ak'] >= 90) {
+                                                if ($data['ipas'] >= 90) {
                                                     echo "Siswa dapat menguasai materi dengan sangat baik";
                                                 }
-                                                else if ($data['ak'] >= 80) {
+                                                else if ($data['ipas'] >= 80) {
                                                     echo "Siswa dapat menguasai materi dengan baik";
                                                 }
-                                                else if ($data['ak'] >= 75) {
+                                                else if ($data['ipas'] >= 75) {
                                                     echo "Siswa dapat menguasai materi dengan cukup baik";
                                                 }
                                                 else {
                                                     echo "Siswa dapat kurang menguasai materi";
-                                                }?></td>
+                                                }?>
+                                            </td>
+                                        <tr>
+                                            <th>5</th>
+                                            <td>Matematika</td>
+                                            <td>75</td>
+                                            <td><?php echo $data['mtk']; ?></td>
+                                            <td>
+                                                <?php 
+                                                if ($data['mtk'] >= 90) {
+                                                    echo "A";
+                                                }
+                                                else if ($data['mtk'] >= 80) {
+                                                    echo "B";
+                                                }
+                                                else if ($data['mtk'] >= 75) {
+                                                    echo "C";
+                                                }
+                                                else {
+                                                    echo "D";
+                                                }?>
+                                            </td>
+                                            <td><?php 
+                                                if ($data['mtk'] >= 90) {
+                                                    echo "Siswa dapat menguasai materi dengan sangat baik";
+                                                }
+                                                else if ($data['mtk'] >= 80) {
+                                                    echo "Siswa dapat menguasai materi dengan baik";
+                                                }
+                                                else if ($data['mtk'] >= 75) {
+                                                    echo "Siswa dapat menguasai materi dengan cukup baik";
+                                                }
+                                                else {
+                                                    echo "Siswa dapat kurang menguasai materi";
+                                                }?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>6</th>
+                                            <td>Pendidikan Jasmani, Olahraga, dan Kesehatan</td>
+                                            <td>75</td>
+                                            <td><?php echo $data['pjok']; ?></td>
+                                            <td>
+                                                <?php 
+                                                if ($data['pjok'] >= 90) {
+                                                    echo "A";
+                                                }
+                                                else if ($data['pjok'] >= 80) {
+                                                    echo "B";
+                                                }
+                                                else if ($data['pjok'] >= 75) {
+                                                    echo "C";
+                                                }
+                                                else {
+                                                    echo "D";
+                                                }?>
+                                            </td>
+                                            <td><?php 
+                                                if ($data['pjok'] >= 90) {
+                                                    echo "Siswa dapat menguasai materi dengan sangat baik";
+                                                }
+                                                else if ($data['pjok'] >= 80) {
+                                                    echo "Siswa dapat menguasai materi dengan baik";
+                                                }
+                                                else if ($data['pjok'] >= 75) {
+                                                    echo "Siswa dapat menguasai materi dengan cukup baik";
+                                                }
+                                                else {
+                                                    echo "Siswa dapat kurang menguasai materi";
+                                                }?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>7</th>
+                                            <td>Seni Rupa</td>
+                                            <td>75</td>
+                                            <td><?php echo $data['rupa']; ?></td>
+                                            <td>
+                                                <?php 
+                                                if ($data['rupa'] >= 90) {
+                                                    echo "A";
+                                                }
+                                                else if ($data['rupa'] >= 80) {
+                                                    echo "B";
+                                                }
+                                                else if ($data['rupa'] >= 75) {
+                                                    echo "C";
+                                                }
+                                                else {
+                                                    echo "D";
+                                                }?>
+                                            </td>
+                                            <td><?php 
+                                                if ($data['rupa'] >= 90) {
+                                                    echo "Siswa dapat menguasai materi dengan sangat baik";
+                                                }
+                                                else if ($data['rupa'] >= 80) {
+                                                    echo "Siswa dapat menguasai materi dengan baik";
+                                                }
+                                                else if ($data['rupa'] >= 75) {
+                                                    echo "Siswa dapat menguasai materi dengan cukup baik";
+                                                }
+                                                else {
+                                                    echo "Siswa dapat kurang menguasai materi";
+                                                }?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>8</th>
+                                            <td>Seni Musik</td>
+                                            <td>75</td>
+                                            <td><?php echo $data['musk']; ?></td>
+                                            <td>
+                                                <?php 
+                                                if ($data['musk'] >= 90) {
+                                                    echo "A";
+                                                }
+                                                else if ($data['musk'] >= 80) {
+                                                    echo "B";
+                                                }
+                                                else if ($data['musk'] >= 75) {
+                                                    echo "C";
+                                                }
+                                                else {
+                                                    echo "D";
+                                                }?>
+                                            </td>
+                                            <td><?php 
+                                                if ($data['musk'] >= 90) {
+                                                    echo "Siswa dapat menguasai materi dengan sangat baik";
+                                                }
+                                                else if ($data['musk'] >= 80) {
+                                                    echo "Siswa dapat menguasai materi dengan baik";
+                                                }
+                                                else if ($data['musk'] >= 75) {
+                                                    echo "Siswa dapat menguasai materi dengan cukup baik";
+                                                }
+                                                else {
+                                                    echo "Siswa dapat kurang menguasai materi";
+                                                }?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>9</th>
+                                            <td>Seni Tari</td>
+                                            <td>75</td>
+                                            <td><?php echo $data['tari']; ?></td>
+                                            <td>
+                                                <?php 
+                                                if ($data['tari'] >= 90) {
+                                                    echo "A";
+                                                }
+                                                else if ($data['tari'] >= 80) {
+                                                    echo "B";
+                                                }
+                                                else if ($data['tari'] >= 75) {
+                                                    echo "C";
+                                                }
+                                                else {
+                                                    echo "D";
+                                                }?>
+                                            </td>
+                                            <td><?php 
+                                                if ($data['tari'] >= 90) {
+                                                    echo "Siswa dapat menguasai materi dengan sangat baik";
+                                                }
+                                                else if ($data['tari'] >= 80) {
+                                                    echo "Siswa dapat menguasai materi dengan baik";
+                                                }
+                                                else if ($data['tari'] >= 75) {
+                                                    echo "Siswa dapat menguasai materi dengan cukup baik";
+                                                }
+                                                else {
+                                                    echo "Siswa dapat kurang menguasai materi";
+                                                }?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>10</th>
+                                            <td>Seni Teater</td>
+                                            <td>75</td>
+                                            <td><?php echo $data['tetr']; ?></td>
+                                            <td>
+                                                <?php 
+                                                if ($data['tetr'] >= 90) {
+                                                    echo "A";
+                                                }
+                                                else if ($data['tetr'] >= 80) {
+                                                    echo "B";
+                                                }
+                                                else if ($data['tetr'] >= 75) {
+                                                    echo "C";
+                                                }
+                                                else {
+                                                    echo "D";
+                                                }?>
+                                            </td>
+                                            <td><?php 
+                                                if ($data['tetr'] >= 90) {
+                                                    echo "Siswa dapat menguasai materi dengan sangat baik";
+                                                }
+                                                else if ($data['tetr'] >= 80) {
+                                                    echo "Siswa dapat menguasai materi dengan baik";
+                                                }
+                                                else if ($data['tetr'] >= 75) {
+                                                    echo "Siswa dapat menguasai materi dengan cukup baik";
+                                                }
+                                                else {
+                                                    echo "Siswa dapat kurang menguasai materi";
+                                                }?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>11</th>
+                                            <td>Bahasa Inggris</td>
+                                            <td>75</td>
+                                            <td><?php echo $data['bing']; ?></td>
+                                            <td>
+                                                <?php 
+                                                if ($data['bing'] >= 90) {
+                                                    echo "A";
+                                                }
+                                                else if ($data['bing'] >= 80) {
+                                                    echo "B";
+                                                }
+                                                else if ($data['bing'] >= 75) {
+                                                    echo "C";
+                                                }
+                                                else {
+                                                    echo "D";
+                                                }?>
+                                            </td>
+                                            <td><?php 
+                                                if ($data['bing'] >= 90) {
+                                                    echo "Siswa dapat menguasai materi dengan sangat baik";
+                                                }
+                                                else if ($data['bing'] >= 80) {
+                                                    echo "Siswa dapat menguasai materi dengan baik";
+                                                }
+                                                else if ($data['bing'] >= 75) {
+                                                    echo "Siswa dapat menguasai materi dengan cukup baik";
+                                                }
+                                                else {
+                                                    echo "Siswa dapat kurang menguasai materi";
+                                                }?>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>

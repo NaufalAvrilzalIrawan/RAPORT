@@ -85,9 +85,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Nilai Detail dari:</h6>
-                        <a class="collapse-item" href="tabelhari.php">Harian</a>
-                        <a class="collapse-item" href="tabeluts.php">PTS</a>
-                        <a class="collapse-item" href="tabelpas.php">PAS</a>
+                        <a class="collapse-item" href="tabelsmt1.php">Semester 1</a>
+                        <a class="collapse-item" href="tabelsmt2.php">Semester 2</a>
                     </div>
                 </div>
             </li>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Raport Online - Tabel Siswa</title>
+    <title>Raport Online - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -85,9 +85,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Nilai Detail dari:</h6>
-                        <a class="collapse-item" href="tabelhari.php">Harian</a>
-                        <a class="collapse-item" href="tabeluts.php">PTS</a>
-                        <a class="collapse-item" href="tabelpas.php">PAS</a>
+                        <a class="collapse-item" href="tabelsmt1.php">Semester 1</a>
+                        <a class="collapse-item" href="tabelsmt2.php">Semester 2</a>
                     </div>
                 </div>
             </li>
@@ -159,6 +158,7 @@
                                         while ($data = mysqli_fetch_array($nam)){
 
                                             echo $data['nama'];
+                                            
                                         
                                         }
                                     ?>
@@ -191,13 +191,15 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Tabel</h1>
-                    <p class="mb-4">Semua informasi siswa</p>
-                    <a href="tambahsiswa.php"><input type="submit" name="TAMBAH" value="TAMBAH SISWA" class="btn btn-primary btn-sm"></a>
+                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+                        For more information about DataTables, please visit the <a target="_blank"
+                            href="https://datatables.net">official DataTables documentation</a>.</p>
+                    <a href="input.php"><input type="submit" name="TAMBAH" value="TAMBAH" class="btn btn-primary btn-sm"></a>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Tabel Data Siswa</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Tabel Data Warga</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -207,10 +209,17 @@
                                             <th>No</th>
                                             <th>NIS</th>
                                             <th>Nama</th>
-                                            <th>Umur</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Agama</th>
-                                            <th>Kelas</th>
+                                            <th>PAI</th>
+                                            <th>Bahasa Indonesia</th>
+                                            <th>PPKN</th>
+                                            <th>IPAS</th>
+                                            <th>MTK</th>
+                                            <th>PJOK</th>
+                                            <th>Seni Rupa</th>
+                                            <th>Seni Musik</th>
+                                            <th>Seni Tari</th>
+                                            <th>Seni Teater</th>
+                                            <th>Bahasa Inggris</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -219,17 +228,24 @@
                                             <th>No</th>
                                             <th>NIS</th>
                                             <th>Nama</th>
-                                            <th>Umur</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Agama</th>
-                                            <th>Kelas</th>
+                                            <th>PAI</th>
+                                            <th>Bahasa Indonesia</th>
+                                            <th>PPKN</th>
+                                            <th>IPAS</th>
+                                            <th>MTK</th>
+                                            <th>PJOK</th>
+                                            <th>Seni Rupa</th>
+                                            <th>Seni Musik</th>
+                                            <th>Seni Tari</th>
+                                            <th>Seni Teater</th>
+                                            <th>Bahasa Inggris</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                     <?php
                                         $no = 1;
-                                        $queri = "SELECT * FROM siswa ORDER BY nama";
+                                        $queri = "SELECT * FROM siswa, smt1 WHERE siswa.nis = smt1.nis";
                                         $hasil = mysqli_query($koneksi, $queri);
 
                                         while ($data = mysqli_fetch_array($hasil)) {
@@ -237,23 +253,22 @@
                                         <tr><th> <?php echo $no; ?> </th>
                                             <td> <?php echo $data['nis']; ?></td>
                                             <td> <?php echo $data['nama']; ?></td>
-                                            <td> <?php echo $data['umur']; ?></td>
-                                            <td> <?php echo $data['gender']; ?></td>
-                                            <td> <?php echo $data['agama']; ?></td>
-                                            <td> <?php echo $data['kelas']; ?></td>
-                                            <td> <?php echo "<a href='ubahsiswa.php?nis=$data[nis]'>"?><input type="submit" name="ubah" value="ubah" class="btn btn-info btn-sm"></a> <?php echo "<a href='?nis=$data[nis]'>"?><input type="submit" name="hapus" value="hapus" onclick="confirm('yakin?')" class="btn btn-danger btn-sm"></a></td>
+                                            <td> <?php echo $data['pai']; ?></td>
+                                            <td> <?php echo $data['bind']; ?></td>
+                                            <td> <?php echo $data['ppkn']; ?></td>
+                                            <td> <?php echo $data['ipas']; ?></td>
+                                            <td> <?php echo $data['mtk']; ?></td>
+                                            <td> <?php echo $data['pjok']; ?></td>
+                                            <td> <?php echo $data['rupa']; ?></td>
+                                            <td> <?php echo $data['musk']; ?></td>
+                                            <td> <?php echo $data['tari']; ?></td>
+                                            <td> <?php echo $data['tetr']; ?></td>
+                                            <td> <?php echo $data['bing']; ?></td>
+                                            <td> <?php echo "<a href='edit.php?nis=$data[nis]'>"?><input type="submit" name="ubah" value="ubah" class="btn btn-info btn-sm"></a> <?php echo "<a href='?nis=$data[nis]'>"?><input type="submit" name="hapus" value="hapus" class="btn btn-danger btn-sm"></a></td>
                                         </tr>
 
                                     <?php
                                         $no++;
-                                        }
-                                    ?>
-                                    <?php
-                                        if (isset($_GET['nis'])) {
-                                            mysqli_query($koneksi, "delete from siswa where nis = '$_GET[nis]'");
-
-                                            echo "echo <script> alert('Data Telah Terhapus');</script>";
-                                            echo "<script>window.location.replace('tabelsiswa.php') </script>";
                                         }
                                     ?>
                                     </tbody>

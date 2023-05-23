@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Raport Online - Tabel Siswa</title>
+    <title>Raport Online - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -122,30 +122,6 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
@@ -191,76 +167,132 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Tabel</h1>
-                    <p class="mb-4">Semua informasi siswa</p>
+                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+                        For more information about DataTables, please visit the <a target="_blank"
+                            href="https://datatables.net">official DataTables documentation</a>.</p>
                     <a href="tambahsiswa.php"><input type="submit" name="TAMBAH" value="TAMBAH SISWA" class="btn btn-primary btn-sm"></a>
 
-                    <!-- DataTales Example -->
+                    <!-- Form input siswa -->
+                    <?php
+                    $sql = mysqli_query($koneksi, "SELECT * from siswa where nis='$_GET[nis]'");
+                    $data = mysqli_fetch_array($sql)
+                    ?>
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Tabel Data Siswa</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>NIS</th>
-                                            <th>Nama</th>
-                                            <th>Umur</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Agama</th>
-                                            <th>Kelas</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>NIS</th>
-                                            <th>Nama</th>
-                                            <th>Umur</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Agama</th>
-                                            <th>Kelas</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    <?php
-                                        $no = 1;
-                                        $queri = "SELECT * FROM siswa ORDER BY nama";
-                                        $hasil = mysqli_query($koneksi, $queri);
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">INPUT DATA WARGA</h6>
+                                </div>
+                                <div class="card-body">
+                                <form action="" method="post" id="haram" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label>NIS</label>
+                                        <input type="number" name="nis" required class="form-control" value="<?php echo $data['nis']?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Nama</label>
+                                        <input type="text" name="nam" required class="form-control" value="<?php echo $data['nama']?>">
+                                    </div>
+                                    <div class="form-row">
+                                        <label>Umur</label>
+                                        <input type="number" name="umr" class="form-control" value="<?php echo $data['umur']?>">
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Jenis Kelamin</label>
+                                        <br>
+                                        <?php if ($data['gender'] == "L") :?>
+                                            <input type="radio" name="kel" id="L" checked value="L">
+                                            <label for="L">Laki-laki</label>
+                                            <input type="radio" name="kel" id="P" value="P">
+                                            <label for="P">Perempuan</label>
+                                        <?php else :?>
+                                            <input type="radio" name="kel" id="L" value="L">
+                                            <label for="L">Laki-laki</label>
+                                            <input type="radio" name="kel" id="P" checked value="P">
+                                            <label for="P">Perempuan</label>
+                                        <?php endif ;?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Agama</label>
+                                            <select name="agm" class="form-control">
+                                            <option <?php echo ($data['agama'] == 'Islam') ? "selected":""?>>Islam</option>
+                                            <option <?php echo ($data['agama'] == 'Protestan') ? "selected":""?>>Protestan</option>
+                                            <option <?php echo ($data['agama'] == 'Katolik') ? "selected":""?> >Katolik</option>
+                                            <option <?php echo ($data['agama'] == 'Hindu') ? "selected":""?> >Hindu</option>
+                                            <option <?php echo ($data['agama'] == 'Buddha') ? "selected":""?> >Buddha</option>
+                                            <option <?php echo ($data['agama'] == 'Konghuchu') ? "selected":""?> >Konghuchu</option>
+                                            </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Kelas</label>
+                                        <select name="kls" class="form-control">
+                                                <option <?php echo ($data['kelas'] == '4A') ? "selected":""?>>4A</option>
+                                                <option <?php echo ($data['kelas'] == '4B') ? "selected":""?>>4B</option>
+                                        </select>
+                                    </div>
+                                        <input type="submit" name="ubah" value="UBAH" class="btn btn-primary">
+                                        <input type="submit" name="reset" value="RESET" class="btn btn-warning">
+                                </form>
+                                </div>
+                                <?php
+                                if (isset($_POST['ubah'])) {
+                                    mysqli_query ($koneksi, "update siswa set
+                                    nis = '$_POST[nis]',
+                                    nama = '$_POST[nam]',
+                                    umur = '$_POST[umr]',
+                                    gender = '$_POST[kel]',
+                                    agama = '$_POST[agm]',
+                                    kelas = '$_POST[kls]'
+                                    where nis = '$_GET[nis]'");
+                            
+                                    echo "<script>alert('Data Telah Diubah');</script>";
+                                    echo "<script>alert('Kembali ke Laptop');</script>";
+                                    echo "<script>window.location.replace('tabelsiswa.php') </script>";
+                                }
 
-                                        while ($data = mysqli_fetch_array($hasil)) {
-                                    ?> 
-                                        <tr><th> <?php echo $no; ?> </th>
-                                            <td> <?php echo $data['nis']; ?></td>
-                                            <td> <?php echo $data['nama']; ?></td>
-                                            <td> <?php echo $data['umur']; ?></td>
-                                            <td> <?php echo $data['gender']; ?></td>
-                                            <td> <?php echo $data['agama']; ?></td>
-                                            <td> <?php echo $data['kelas']; ?></td>
-                                            <td> <?php echo "<a href='ubahsiswa.php?nis=$data[nis]'>"?><input type="submit" name="ubah" value="ubah" class="btn btn-info btn-sm"></a> <?php echo "<a href='?nis=$data[nis]'>"?><input type="submit" name="hapus" value="hapus" onclick="confirm('yakin?')" class="btn btn-danger btn-sm"></a></td>
-                                        </tr>
+                                if (isset($_POST['reset'])) {
+                                    echo "<script>alert('BITE THE DUST');</script>";
+                                    echo "<script>window.location.replace('ubahsiswa.php?nis=$data[nis]') </script>";
+                                }
 
-                                    <?php
-                                        $no++;
-                                        }
-                                    ?>
-                                    <?php
-                                        if (isset($_GET['nis'])) {
-                                            mysqli_query($koneksi, "delete from siswa where nis = '$_GET[nis]'");
+                                /*function upload() {
+                                    $namaFile = $_FILES['gam']['name'];
+                                    $ukuranFile = $_FILES['gam']['size'];
+                                    $error = $_FILES['gam']['error'];
+                                    $tmpName = $_FILES['gam']['tmp_name'];
 
-                                            echo "echo <script> alert('Data Telah Terhapus');</script>";
-                                            echo "<script>window.location.replace('tabelsiswa.php') </script>";
-                                        }
-                                    ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                                    //cek gambar diupload
+                                    if ($error === 4){
+                                        echo "<script> alert('ndak ada gambar'); </script>";
+                                        return false;
+                                    }
+
+                                    //cek jenis file gambar
+                                    $gambarvalid = ['jpg', 'jpeg', 'png'];
+                                    $ekstensigamb = explode('.', $namaFile);
+                                    $ekstensigamb = strtolower(end($ekstensigamb));
+                                    
+                                    if (!in_array($ekstensigamb, $gambarvalid)) {
+                                        echo "<script> alert('file nya sus mang'); </script>";
+                                        return false;
+                                    }
+
+                                    //cek ukuran file gambar
+                                    if ($ukuranFile > 10000000) {
+                                        echo "<script> alert('ukuran file terlalu besar'); </script>";
+                                        return false;
+                                    }
+
+                                    //lolos eliminasi kemunduran
+                                    //buat nama baru
+                                    $namaFileBaru = uniqid();
+                                    $namaFileBaru .= '.';
+                                    $namaFileBaru .= $ekstensigamb;
+
+                                    move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+
+                                    return $namaFileBaru;
+                                }*/
+                            ?>
 
                 </div>
                 <!-- /.container-fluid -->

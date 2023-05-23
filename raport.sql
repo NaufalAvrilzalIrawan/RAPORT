@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2023 at 03:51 PM
+-- Generation Time: May 23, 2023 at 11:22 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.2.0
 
@@ -64,14 +64,14 @@ INSERT INTO `nilai` (`idnilai`, `nis`, `idpel`, `harian`, `uts1`, `pas1`, `uts2`
 
 CREATE TABLE `pelajaran` (
   `idpel` int(3) NOT NULL,
-  `nama` varchar(55) NOT NULL
+  `namapel` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pelajaran`
 --
 
-INSERT INTO `pelajaran` (`idpel`, `nama`) VALUES
+INSERT INTO `pelajaran` (`idpel`, `namapel`) VALUES
 (1, 'Pendidikan Agama Islam'),
 (2, 'Bahasa Indonesia'),
 (3, 'Pendidikan Pancasila dan Kewarganegaraan'),
@@ -104,32 +104,60 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`nis`, `nama`, `umur`, `gender`, `agama`, `kelas`) VALUES
-('1920229010029', 'ALMA FILZAH MARITZA', 12, 'P', NULL, '4b'),
-('1920229010030', 'ANGELIA FITRI', 13, 'P', NULL, '4b'),
-('1920229010031', 'AULIA RAHMA', 12, 'P', NULL, '4b'),
-('1920229010032', 'BELVANA VARISHA SHOUMIE ROCHAENDY', 12, 'P', NULL, '4b'),
-('1920229010033', 'CAKRA', 13, 'L', NULL, '4b');
+('1920229010029', 'ALMA FILZAH MARITZA', 10, 'P', 'Islam', '4B'),
+('1920229010030', 'ANGELIA FITRI', 10, 'P', 'Islam', '4B'),
+('1920229010031', 'AULIA RAHMA', 9, 'P', 'Islam', '4B'),
+('1920229010032', 'BELVANA VARISHA SHOUMIE ROCHAENDY', 11, 'P', 'Protestan', '4B'),
+('1920229010033', 'CAKRA', 10, 'L', 'Hindu', '4B'),
+('1920229010034', 'DILA AL HUSNA', 9, 'P', 'Islam', '4B'),
+('1920229010035', 'GILANG ANGGI PRATAMA PUTRA', 11, 'L', 'Islam', '4B'),
+('1920229010036', 'INDAH ANGGRAENI HALAWA', 10, 'P', 'Islam', '4B'),
+('1920229010037', 'KAYLA ASYIFA OKTAVIA', 9, 'P', 'Islam', '4B'),
+('1920229010038', 'KHANSA SITI AULIA', 9, 'P', 'Islam', '4B'),
+('1920229010039', 'LIONEL ALVARO ILHAM', 10, 'L', 'Islam', '4B'),
+('1920229010040', 'MEYKA PUTRI JATI', 10, 'P', 'Islam', '4B'),
+('1920229010041', 'MUHAMAD LUCKY ADI PUTRA', 11, 'L', 'Islam', '4B'),
+('1920229010043', 'MUHAMMAD FAIQ AL GHIFARI', 9, 'L', 'Islam', '4B'),
+('1920229010045', 'MUHAMMAD RIZKI SOPIAN', 11, 'L', 'Islam', '4B'),
+('1920229010046', 'NABILLA PUTRI NOVIANTI', 10, 'P', 'Islam', '4B'),
+('1920229010047', 'NAIMA MAUDY HASTARI', 9, 'P', 'Islam', '4B'),
+('1920229010048', 'NATASHA RATU AYU', 10, 'P', 'Protestan', '4B'),
+('1920229010049', 'PRASETYA ARNE NURMAULANI', 11, 'P', 'Islam', '4B'),
+('1920229010050', 'RAMDAN SAHRONI', 10, 'L', 'Islam', '4B'),
+('1920229010051', 'RIVERA AIREEN MYEASHA', 10, 'P', 'Protestan', '4B'),
+('1920229010052', 'SALMAN PARISI', 11, 'L', 'Islam', '4B'),
+('1920229010054', 'TANIA APRILIA', 9, 'P', 'Islam', '4B'),
+('1920229010055', 'ZAHIRA FEBRIYANI', 10, 'P', 'Islam', '4B'),
+('1920229010056', 'ZAIYAN AMALINA KHAIRIAH', 10, 'P', 'Islam', '4B'),
+('2021229020057', 'KIMORA BALQIS MARINA SRINIRA', 11, 'P', 'Islam', '4B');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `suswa`
+-- Table structure for table `smt1`
 --
 
-CREATE TABLE `suswa` (
-  `nis` int(10) NOT NULL,
-  `nama` varchar(50) NOT NULL,
-  `kelas` varchar(10) NOT NULL,
-  `alamat` varchar(25) NOT NULL
+CREATE TABLE `smt1` (
+  `nis` varchar(15) NOT NULL,
+  `pai` int(3) DEFAULT NULL,
+  `bind` int(3) DEFAULT NULL,
+  `ppkn` int(3) DEFAULT NULL,
+  `ipas` int(3) DEFAULT NULL,
+  `mtk` int(3) DEFAULT NULL,
+  `pjok` int(3) DEFAULT NULL,
+  `rupa` int(3) DEFAULT NULL,
+  `musk` int(3) DEFAULT NULL,
+  `tari` int(3) DEFAULT NULL,
+  `tetr` int(3) DEFAULT NULL,
+  `bing` int(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `suswa`
+-- Dumping data for table `smt1`
 --
 
-INSERT INTO `suswa` (`nis`, `nama`, `kelas`, `alamat`) VALUES
-(212210420, 'Naufal Avrilzal Irawan', 'XI PPLG 1]', 'Jl. Caringin blk no. 16'),
-(212238902, 'Adnan Pekerjaan Rumah', 'XI ELEKTRO', 'Jl. Aqua Sabotol No. 5000');
+INSERT INTO `smt1` (`nis`, `pai`, `bind`, `ppkn`, `ipas`, `mtk`, `pjok`, `rupa`, `musk`, `tari`, `tetr`, `bing`) VALUES
+('1920229010029', 80, 79, 77, 85, 83, 80, 78, 88, 76, 78, 75);
 
 -- --------------------------------------------------------
 
@@ -175,12 +203,6 @@ ALTER TABLE `pelajaran`
 -- Indexes for table `siswa`
 --
 ALTER TABLE `siswa`
-  ADD PRIMARY KEY (`nis`);
-
---
--- Indexes for table `suswa`
---
-ALTER TABLE `suswa`
   ADD PRIMARY KEY (`nis`);
 
 --

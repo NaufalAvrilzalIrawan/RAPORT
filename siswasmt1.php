@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Raport Online - Tabel Siswa</title>
+    <title>Raport Online - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -85,9 +85,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Nilai Detail dari:</h6>
-                        <a class="collapse-item" href="tabelhari.php">Harian</a>
-                        <a class="collapse-item" href="tabeluts.php">PTS</a>
-                        <a class="collapse-item" href="tabelpas.php">PAS</a>
+                        <a class="collapse-item" href="tabelsmt1.php">Semester 1</a>
+                        <a class="collapse-item" href="tabelsmt2.php">Semester 2</a>
                     </div>
                 </div>
             </li>
@@ -159,6 +158,7 @@
                                         while ($data = mysqli_fetch_array($nam)){
 
                                             echo $data['nama'];
+                                            
                                         
                                         }
                                     ?>
@@ -190,72 +190,218 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
+                    <?php
+                    $sql = mysqli_query($koneksi, "SELECT * from siswa where nis='$_GET[nis]'");
+                    $data = mysqli_fetch_array($sql)
+                    ?>
                     <h1 class="h3 mb-2 text-gray-800">Tabel</h1>
-                    <p class="mb-4">Semua informasi siswa</p>
-                    <a href="tambahsiswa.php"><input type="submit" name="TAMBAH" value="TAMBAH SISWA" class="btn btn-primary btn-sm"></a>
+                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+                        For more information about DataTables, please visit the <a target="_blank"
+                            href="https://datatables.net">official DataTables documentation</a>.</p>
+                    <a href="input.php"><input type="submit" name="TAMBAH" value="TAMBAH" class="btn btn-primary btn-sm"></a>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Tabel Data Siswa</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Tabel Data Warga</h6>
                         </div>
                         <div class="card-body">
+                        <table style="text-align:left;">
+                            <tr style="text-align:left;">
+                                <th width="350">NIS</th>
+                                <td> : </td>
+                                <td> <?php echo $data['nis']; ?> </td>
+                            </tr>
+                            <tr>
+                                <th>NAMA</th>
+                                <td> : </td>
+                                <td> <?php echo $data['nama']; ?> </td>
+                            </tr>
+                            <tr>
+                                <th>UMUR</th>
+                                <td> : </td>
+                                <td> <?php echo $data['kelas']; ?> </td>
+                            </tr>
+                            <tr>
+                                <th>JENIS KELAMIN</th>
+                                <td> : </td>
+                                <td> <?php echo $data['gender']; ?> </td>
+                            </tr>
+                            <tr>
+                                <th>AGAMA</th>
+                                <td> : </td>
+                                <td> <?php echo $data['agama']; ?> </td>
+                            </tr>
+                            <tr>
+                                <th>KELAS</th>
+                                <td> : </td>
+                                <td> <?php echo $data['kelas']; ?> </td>
+                            </tr>
+                        </table>
+                        <br>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>NIS</th>
-                                            <th>Nama</th>
-                                            <th>Umur</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Agama</th>
-                                            <th>Kelas</th>
-                                            <th>Aksi</th>
+                                            <th>Mata Pelajaran</th>
+                                            <th>KKM</th>
+                                            <th>Nilai</th>
+                                            <th>Predikat</th>
+                                            <th>Komentar</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>No</th>
-                                            <th>NIS</th>
-                                            <th>Nama</th>
-                                            <th>Umur</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Agama</th>
-                                            <th>Kelas</th>
-                                            <th>Aksi</th>
+                                            <th>Mata Pelajaran</th>
+                                            <th>KKM</th>
+                                            <th>Nilai</th>
+                                            <th>Predikat</th>
+                                            <th>Komentar</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                     <?php
-                                        $no = 1;
-                                        $queri = "SELECT * FROM siswa ORDER BY nama";
-                                        $hasil = mysqli_query($koneksi, $queri);
-
-                                        while ($data = mysqli_fetch_array($hasil)) {
-                                    ?> 
-                                        <tr><th> <?php echo $no; ?> </th>
-                                            <td> <?php echo $data['nis']; ?></td>
-                                            <td> <?php echo $data['nama']; ?></td>
-                                            <td> <?php echo $data['umur']; ?></td>
-                                            <td> <?php echo $data['gender']; ?></td>
-                                            <td> <?php echo $data['agama']; ?></td>
-                                            <td> <?php echo $data['kelas']; ?></td>
-                                            <td> <?php echo "<a href='ubahsiswa.php?nis=$data[nis]'>"?><input type="submit" name="ubah" value="ubah" class="btn btn-info btn-sm"></a> <?php echo "<a href='?nis=$data[nis]'>"?><input type="submit" name="hapus" value="hapus" onclick="confirm('yakin?')" class="btn btn-danger btn-sm"></a></td>
+                                    $sql = mysqli_query($koneksi, "SELECT * from smt1 where nis='$_GET[nis]'");
+                                    $data = mysqli_fetch_array($sql)
+                                    ?>
+                                        <tr>
+                                            <th>1</th>
+                                            <td>Pendidikan Agama Islam</td>
+                                            <td>75</td>
+                                            <td><?php echo $data['pai']; ?></td>
+                                            <td>
+                                                <?php 
+                                                if ($data['pai'] >= 90) {
+                                                    echo "A";
+                                                }
+                                                else if ($data['pai'] >= 80) {
+                                                    echo "B";
+                                                }
+                                                else if ($data['pai'] >= 75) {
+                                                    echo "C";
+                                                }
+                                                else {
+                                                    echo "D";
+                                                }?>
+                                            </td>
+                                            <td><?php 
+                                                if ($data['pai'] >= 90) {
+                                                    echo "Siswa dapat menguasai materi dengan sangat baik";
+                                                }
+                                                else if ($data['pai'] >= 80) {
+                                                    echo "Siswa dapat menguasai materi dengan baik";
+                                                }
+                                                else if ($data['pai'] >= 75) {
+                                                    echo "Siswa dapat menguasai materi dengan cukup baik";
+                                                }
+                                                else {
+                                                    echo "Siswa dapat kurang menguasai materi";
+                                                }?></td>
                                         </tr>
-
-                                    <?php
-                                        $no++;
-                                        }
-                                    ?>
-                                    <?php
-                                        if (isset($_GET['nis'])) {
-                                            mysqli_query($koneksi, "delete from siswa where nis = '$_GET[nis]'");
-
-                                            echo "echo <script> alert('Data Telah Terhapus');</script>";
-                                            echo "<script>window.location.replace('tabelsiswa.php') </script>";
-                                        }
-                                    ?>
+                                        <tr>
+                                            <th>2</th>
+                                            <td>Bahasa Indonesia</td>
+                                            <td>75</td>
+                                            <td><?php echo $data['bind']; ?></td>
+                                            <td>
+                                                <?php 
+                                                if ($data['bind'] >= 90) {
+                                                    echo "A";
+                                                }
+                                                else if ($data['bind'] >= 80) {
+                                                    echo "B";
+                                                }
+                                                else if ($data['bind'] >= 75) {
+                                                    echo "C";
+                                                }
+                                                else {
+                                                    echo "D";
+                                                }?>
+                                            </td>
+                                            <td><?php 
+                                                if ($data['bind'] >= 90) {
+                                                    echo "Siswa dapat menguasai materi dengan sangat baik";
+                                                }
+                                                else if ($data['bind'] >= 80) {
+                                                    echo "Siswa dapat menguasai materi dengan baik";
+                                                }
+                                                else if ($data['bind'] >= 75) {
+                                                    echo "Siswa dapat menguasai materi dengan cukup baik";
+                                                }
+                                                else {
+                                                    echo "Siswa dapat kurang menguasai materi";
+                                                }?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>3</th>
+                                            <td>Pendidikan Pancasila dan Kewarganegaraan</td>
+                                            <td>75</td>
+                                            <td><?php echo $data['ppkn']; ?></td>
+                                            <td>
+                                                <?php 
+                                                if ($data['ppkn'] >= 90) {
+                                                    echo "A";
+                                                }
+                                                else if ($data['ppkn'] >= 80) {
+                                                    echo "B";
+                                                }
+                                                else if ($data['ppkn'] >= 75) {
+                                                    echo "C";
+                                                }
+                                                else {
+                                                    echo "D";
+                                                }?>
+                                            </td>
+                                            <td><?php 
+                                                if ($data['ppkn'] >= 90) {
+                                                    echo "Siswa dapat menguasai materi dengan sangat baik";
+                                                }
+                                                else if ($data['ppkn'] >= 80) {
+                                                    echo "Siswa dapat menguasai materi dengan baik";
+                                                }
+                                                else if ($data['ppkn'] >= 75) {
+                                                    echo "Siswa dapat menguasai materi dengan cukup baik";
+                                                }
+                                                else {
+                                                    echo "Siswa dapat kurang menguasai materi";
+                                                }?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>3</th>
+                                            <td>Pendidikan Pancasila dan Kewarganegaraan</td>
+                                            <td>75</td>
+                                            <td><?php echo $data['ak']; ?></td>
+                                            <td>
+                                                <?php 
+                                                if ($data['ak'] >= 90) {
+                                                    echo "A";
+                                                }
+                                                else if ($data['ak'] >= 80) {
+                                                    echo "B";
+                                                }
+                                                else if ($data['ak'] >= 75) {
+                                                    echo "C";
+                                                }
+                                                else {
+                                                    echo "D";
+                                                }?>
+                                            </td>
+                                            <td><?php 
+                                                if ($data['ak'] >= 90) {
+                                                    echo "Siswa dapat menguasai materi dengan sangat baik";
+                                                }
+                                                else if ($data['ak'] >= 80) {
+                                                    echo "Siswa dapat menguasai materi dengan baik";
+                                                }
+                                                else if ($data['ak'] >= 75) {
+                                                    echo "Siswa dapat menguasai materi dengan cukup baik";
+                                                }
+                                                else {
+                                                    echo "Siswa dapat kurang menguasai materi";
+                                                }?></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

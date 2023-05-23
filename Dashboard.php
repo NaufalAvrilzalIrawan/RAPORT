@@ -244,11 +244,11 @@
                                                 Jumlah Mata Pelajaran</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                             <?php
-                                                    $jum = "select count(nama) from pelajaran";
+                                                    $jum = "select count(namapel) from pelajaran";
                                                     $haj = $koneksi->query($jum);
 
                                                     while($row = mysqli_fetch_array($haj)) {
-                                                        echo $row['count(nama)'];
+                                                        echo $row['count(namapel)'];
                                                     }
                                                 ?>
                                             </div>

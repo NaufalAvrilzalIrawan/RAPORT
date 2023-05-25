@@ -9,7 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Raport Online - Dashboard</title>
+    <title>R.O - Tabel Semester 1</title>
+    <link rel="icon" type="image/x-icon" href="img/LogoDinasPendidikan.png">
 
     <!-- Custom fonts for this template-->
     <link href="sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,6 +23,10 @@
 
     <?php
         include "koneksi_db.php";
+        session_start();
+        if (!isset($_SESSION['login'])){
+            echo "<script>window.location.replace('login.php') </script>";
+        }
     ?>
 </head>
 
@@ -60,16 +65,16 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>DATA</span>
                 </a>
-                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data detail dari:</h6>
-                        <a class="collapse-item active" href="tabelsiswa.php">Siswa</a>
+                        <a class="collapse-item" href="tabelsiswa.php">Siswa</a>
                         <a class="collapse-item" href="tabelnilai.php">Nilai</a>
                     </div>
                 </div>
@@ -154,13 +159,7 @@
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                     <!--menampilkan nama dari user-->
                                     <?php
-                                        $nam = mysqli_query($koneksi, "select * from user where nisnip='$_GET[nisp]'");
-                                        while ($data = mysqli_fetch_array($nam)){
-
-                                            echo $data['nama'];
-                                            
-                                        
-                                        }
+                                        echo $_SESSION['nama'];
                                     ?>
                                 </span>
                                 <img class="img-profile rounded-circle"
@@ -320,7 +319,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="LogISB.php">Logout</a>
+                    <a class="btn btn-primary" href="logout.php">Logout</a>
                 </div>
             </div>
         </div>

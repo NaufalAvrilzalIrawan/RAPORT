@@ -9,6 +9,7 @@
     <meta name="author" content="">
 
     <title>Selamat Datang</title>
+    <link rel="icon" type="image/x-icon" href="img/LogoDinasPendidikan.png">
 
     <!-- Custom fonts for this template-->
     <link href="sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -21,6 +22,10 @@
 
     <?php
     //membuat variabel menggunakan php
+        session_start();
+        if (isset($_SESSION['login'])){
+            echo "<script>window.location.replace('Dashboard.php?') </script>";
+        }
         include "koneksi_db.php";
         $queri = "select * from user";
         $hasil = mysqli_query($koneksi, $queri);
@@ -120,18 +125,20 @@
         $user = mysqli_real_escape_string($koneksi, $user);
         $pass = mysqli_real_escape_string($koneksi, $pass);
 
-        $sql = "select * from user where nisnip = '$user' and password = '$pass'";
+        $sql = "select * from user where kid = '$user' and password = '$pass'";
         $hasil = mysqli_query($koneksi, $sql);
         $array = mysqli_fetch_array($hasil);
         $cek = mysqli_num_rows($hasil);
 
         if ($cek==1) {
             echo "<script>alert('Anda Berhasil Masuk');</script>";
-            echo "<script>window.location.replace('Dashboard.php?nisp=$user') </script>";
+            $_SESSION['login'] = true;
+            $_SESSION['nama'] = $array['nama'];
+            echo "<script>window.location.replace('Dashboard.php?') </script>";
         }
         else {
             echo "<script>alert ('Username atau Password tidak valid. Kembali'); </script>";
-            echo "<script>window.location.replace('index.php') </script>";
+            echo "<script>window.location.replace('login.php') </script>";
         }
     }
 ?>

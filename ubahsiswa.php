@@ -9,7 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Raport Online - Dashboard</title>
+    <title>R.O - Ubah Siswa</title>
+    <link rel="icon" type="image/x-icon" href="img/LogoDinasPendidikan.png">
 
     <!-- Custom fonts for this template-->
     <link href="sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,6 +23,10 @@
 
     <?php
         include "koneksi_db.php";
+        session_start();
+        if (!isset($_SESSION['login'])){
+            echo "<script>window.location.replace('login.php') </script>";
+        }
     ?>
 </head>
 
@@ -60,16 +65,16 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>DATA</span>
                 </a>
-                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data detail dari:</h6>
-                        <a class="collapse-item active" href="tabelsiswa.php">Siswa</a>
+                        <a class="collapse-item" href="tabelsiswa.php">Siswa</a>
                         <a class="collapse-item" href="tabelnilai.php">Nilai</a>
                     </div>
                 </div>
@@ -85,9 +90,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Nilai Detail dari:</h6>
-                        <a class="collapse-item" href="tabelhari.php">Harian</a>
-                        <a class="collapse-item" href="tabeluts.php">PTS</a>
-                        <a class="collapse-item" href="tabelpas.php">PAS</a>
+                        <a class="collapse-item" href="tabelsmt1.php">Semester 1</a>
+                        <a class="collapse-item" href="tabelsmt2.php">Semester 2</a>
                     </div>
                 </div>
             </li>
@@ -122,6 +126,30 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
@@ -131,12 +159,7 @@
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                     <!--menampilkan nama dari user-->
                                     <?php
-                                        $nam = mysqli_query($koneksi, "select * from user where nisnip='$_GET[nisp]'");
-                                        while ($data = mysqli_fetch_array($nam)){
-
-                                            echo $data['nama'];
-                                        
-                                        }
+                                        echo $_SESSION['nama'];
                                     ?>
                                 </span>
                                 <img class="img-profile rounded-circle"

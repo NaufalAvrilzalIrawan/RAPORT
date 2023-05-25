@@ -9,7 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Raport Online - Dashboard</title>
+    <title>R.O - Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="img/LogoDinasPendidikan.png">
 
     <!-- Custom fonts for this template-->
     <link href="sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,6 +23,10 @@
 
     <?php
         include "koneksi_db.php";
+        session_start();
+        if (!isset($_SESSION['login'])){
+            echo "<script>window.location.replace('login.php') </script>";
+        }
     ?>
 </head>
 
@@ -154,12 +159,7 @@
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                     <!--menampilkan nama dari user-->
                                     <?php
-                                        $nam = mysqli_query($koneksi, "select * from user where nisnip='$_GET[nisp]'");
-                                        while ($data = mysqli_fetch_array($nam)){
-
-                                            echo $data['nama'];
-                                        
-                                        }
+                                        echo $_SESSION['nama'];
                                     ?>
                                 </span>
                                 <img class="img-profile rounded-circle"
@@ -195,11 +195,7 @@
                     <h4>Selamat Datang Kembali,
                         <!--menampilkan nama dari user-->
                         <?php
-                            $nam = mysqli_query($koneksi, "select * from user where nisnip='$_GET[nisp]'");
-                            while ($data = mysqli_fetch_array($nam)){
-                                echo $data['nama'];
-                                        
-                            }
+                            echo $_SESSION['nama'];
                         ?>
                     </h4>
 
@@ -267,17 +263,17 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Data Nilai yang telah masuk
+                                                Rata-rata nilai terbesar
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
                                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
                                                     <?php
-                                                        $jum = "select count(idnilai) from nilai";
-                                                        $haj = $koneksi->query($jum);
-
+                                                        $hum = "SELECT max(pai + bind + ppkn + ipas + mtk + pjok + rupa + musk + tari + tetr + bing) / 11 AS rata FROM smt1";
+                                                        $haj = $koneksi->query($hum);
+    
                                                         while($row = mysqli_fetch_array($haj)) {
-                                                            echo $row['count(idnilai)'];
+                                                            echo $row['rata'];
                                                         }
                                                     ?>
                                                     </div>
@@ -308,7 +304,7 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Sixth generation Concole War Sale</h6>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="small font-weight-bold">Reamcast <span
+                                    <h4 class="small font-weight-bold">Dreamcast <span
                                             class="float-right">4%</span></h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar bg-danger" role="progressbar" style="width: 4%"
@@ -425,7 +421,7 @@
                 <div class="modal-body">Tekan "Logout" untuk kembali ke halaman Login</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                    <a class="btn btn-primary" href="index.php">Logout</a>
+                    <a class="btn btn-primary" href="logout.php">Logout</a>
                 </div>
             </div>
         </div>

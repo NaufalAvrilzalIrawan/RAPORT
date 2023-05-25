@@ -202,75 +202,66 @@
                                     <h6 class="m-0 font-weight-bold text-primary">INPUT DATA WARGA</h6>
                                 </div>
                                 <div class="card-body">
+                                <?php
+                                $sql = mysqli_query($koneksi, "SELECT * FROM smt1, siswa WHERE smt1.nis = siswa.nis AND smt1.nis = '$_GET[nis]'");
+                                $data = mysqli_fetch_array($sql)
+                                ?>
                                 <form action="" method="post" id="haram" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label>Nama</label>
-                                        <select name="nis" class="form-control">
-                                        <?php
-                                        $no = 1;
-                                        $queri = "SELECT * FROM siswa ORDER BY nama";
-                                        $hasil = mysqli_query($koneksi, $queri);
-
-                                        while ($data = mysqli_fetch_array($hasil)) {
-                                    ?>  
-                                            <option value="<?php echo $data['nis'];?>"><?php echo $data['nama']; ?></option>
-                                    <?php
-                                        }
-                                    ?>
-                                                
-                                        </select>
+                                        <input type="text" name="nis" class="form-control" readonly value="<?php echo $data['nama']?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Pendidikan Agama Islam</label>
-                                        <input type="number" name="pai" required class="form-control" max="100">
+                                        <input type="number" name="pai" class="form-control" max="100" value="<?php echo $data['pai']?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Bahasa Indonesia</label>
-                                        <input type="number" name="bind" class="form-control" max="100">
+                                        <input type="number" name="bind" class="form-control" max="100" value="<?php echo $data['bind']?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Pendidikan Pancasila dan Kewarganegaraan</label>
-                                        <input type="number" name="ppkn" class="form-control" max="100">
+                                        <input type="number" name="ppkn" class="form-control" max="100" value="<?php echo $data['ppkn']?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Ilmu Pengetahuan Alam dan Sosial</label>
-                                        <input type="number" name="ipas" class="form-control" max="100">
+                                        <input type="number" name="ipas" class="form-control" max="100" value="<?php echo $data['ipas']?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Matematika</label>
-                                        <input type="number" name="mtk" class="form-control" max="100">
+                                        <input type="number" name="mtk" class="form-control" max="100" value="<?php echo $data['mtk']?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Pendidikan Olahraga, Jasmani dan Kesehatan</label>
-                                        <input type="number" name="pjok" class="form-control" max="100">
+                                        <input type="number" name="pjok" class="form-control" max="100" value="<?php echo $data['pjok']?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Seni Rupa</label>
-                                        <input type="number" name="rupa" class="form-control" max="100">
+                                        <input type="number" name="rupa" class="form-control" max="100" value="<?php echo $data['rupa']?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Seni Musik</label>
-                                        <input type="number" name="musk" class="form-control" max="100">
+                                        <input type="number" name="musk" class="form-control" max="100" value="<?php echo $data['musk']?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Seni Tari</label>
-                                        <input type="number" name="tari" class="form-control" max="100">
+                                        <input type="number" name="tari" class="form-control" max="100" value="<?php echo $data['tari']?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Seni Teater</label>
-                                        <input type="number" name="tetr" class="form-control" max="100">
+                                        <input type="number" name="tetr" class="form-control" max="100" value="<?php echo $data['tetr']?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Bahasa Inggris</label>
-                                        <input type="number" name="bing" class="form-control" max="100">
+                                        <input type="number" name="bing" class="form-control" max="100" value="<?php echo $data['bing']?>">
                                     </div>
-                                        <input type="submit" name="masuk" value="MASUK" class="btn btn-primary">
+                                        <input type="submit" name="ubah" value="UBAH" class="btn btn-primary">
                                         <input type="submit" name="reset" value="RESET" class="btn btn-warning">
                                 </form>
                                 </div>
                                 <?php
-                                if (isset($_POST['masuk'])) {
-                                    $nis = $_POST['nis'];
+                                if (isset($_POST['ubah'])) {
+                                    $nis = $_GET['nis'];
                                     $pai = $_POST['pai'];
                                     $bind = $_POST['bind'];
                                     $ppkn = $_POST['ppkn'];
@@ -283,44 +274,35 @@
                                     $tetr = $_POST['tetr'];
                                     $bing = $_POST['bing'];
 
+                                    mysqli_query ($koneksi, "update smt1 set
+                                    pai = '$pai',
+                                    bind = '$bind',
+                                    ppkn = '$ppkn',
+                                    ipas = '$ipas',
+                                    mtk = '$mtk',
+                                    pjok = '$pjok',
+                                    rupa = '$rupa',
+                                    musk = '$musk',
+                                    tari = '$tari',
+                                    tetr = '$tetr',
+                                    bing = '$bing'
+                                    where nis = '$nis'");
+                                
+                                    echo "<script>alert('Data Telah Diubah');</script>";
+                                    echo "<script>alert('Kembali ke Laptop');</script>";
+                                    echo "<script>window.location.replace('tabelsmt1.php') </script>";
+
                                     /*upload gambar
                                     $gam = upload();
 
                                     if ( !$gam ) {
                                         return false;
-                                    }*/
-
-                                    $cock = mysqli_num_rows(mysqli_query($koneksi, "SELECT * from smt1 WHERE nis=$nis"));
-                                    if($cock > 0){
-                                        mysqli_query ($koneksi, "update smt1 set
-                                        pai = '$pai',
-                                        bind = '$bind',
-                                        ppkn = '$ppkn',
-                                        ipas = '$ipas',
-                                        mtk = '$mtk',
-                                        pjok = '$pjok',
-                                        rupa = '$rupa',
-                                        musk = '$musk',
-                                        tari = '$tari',
-                                        tetr = '$tetr',
-                                        bing = '$bing'
-                                        where nis = '$nis'");
-                                
-                                        echo "<script>alert('Data Telah Diubah');</script>";
-                                        echo "<script>alert('Kembali ke Laptop');</script>";
-                                        echo "<script>window.location.replace('tabelsmt1.php') </script>";
-                                    }
-
-                                        else{
-                                            mysqli_query ($koneksi,"INSERT INTO smt1 VALUES ('$nis','$pai','$bind','$ppkn','$ipas','$mtk','$pjok','$rupa','$musk','$tari','$tetr','$bing')");
-                                            echo "<script> alert('Data Baru Telah Ditambahkan');</script>";
-                                            echo "<script>window.location.replace('tabelsmt1.php') </script>";
-                                        }
+                                    }*/    
                                 }
 
                                 if (isset($_POST['reset'])) {
                                     echo "<script>alert('BITE THE DUST');</script>";
-                                    echo "<script>window.location.replace('tambahsiswa.php') </script>";
+                                    echo "<script>window.location.replace('ubahsmt1.php?nis=$_GET[nis]') </script>";
                                 }
 
                                 /*function upload() {

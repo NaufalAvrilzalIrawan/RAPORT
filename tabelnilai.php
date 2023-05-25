@@ -209,10 +209,8 @@
                                             <th>No</th>
                                             <th>NIS</th>
                                             <th>Nama</th>
-                                            <th>Harian</th>
-                                            <th>UTS S1</th>
-                                            <th>PAS S1</th>
-                                            <th>UTS S2</th>
+                                            <th>Semester 1</th>
+                                            <th>Semester 2</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -221,17 +219,15 @@
                                             <th>No</th>
                                             <th>NIS</th>
                                             <th>Nama</th>
-                                            <th>Harian</th>
-                                            <th>UTS S1</th>
-                                            <th>PAS S1</th>
-                                            <th>UTS S2</th>
+                                            <th>Semester 1</th>
+                                            <th>Semester 2</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                     <?php
                                         $no = 1;
-                                        $queri = "select * from siswa";
+                                        $queri = "SELECT * FROM siswa ORDER BY nama";
                                         $hasil = mysqli_query($koneksi, $queri);
 
                                         while ($data = mysqli_fetch_array($hasil)) {
@@ -241,37 +237,14 @@
                                             <td> <?php echo $data['nama']; ?></td>
                                             <!--memanggil rata-rata nilai-->
                                             <td> <?php
-                                                    $jum = "SELECT Avg(harian) FROM nilai WHERE nis = $data[nis]";
-                                                    $haj = $koneksi->query($jum);
+                                                    $hum = "SELECT (pai + bind + ppkn + ipas + mtk + pjok + rupa + musk + tari + tetr + bing) / 11 AS rata FROM smt1 WHERE nis = $data[nis]";
+                                                    $haj = $koneksi->query($hum);
 
                                                     while($row = mysqli_fetch_array($haj)) {
-                                                        echo $row['Avg(harian)'];
+                                                        echo $row['rata'];
                                                     }
                                                 ?></td>
-                                            <td> <?php
-                                                    $jum = "SELECT Avg(uts1) FROM nilai WHERE nis = $data[nis]";
-                                                    $haj = $koneksi->query($jum);
-
-                                                    while($row = mysqli_fetch_array($haj)) {
-                                                        echo $row['Avg(uts1)'];
-                                                    }
-                                                ?></td>
-                                            <td> <?php
-                                                    $jum = "SELECT Avg(pas1) FROM nilai WHERE nis = $data[nis]";
-                                                    $haj = $koneksi->query($jum);
-
-                                                    while($row = mysqli_fetch_array($haj)) {
-                                                        echo $row['Avg(pas1)'];
-                                                    }
-                                                ?></td>
-                                            <td> <?php
-                                                    $jum = "SELECT Avg(uts2) FROM nilai WHERE nis = $data[nis]";
-                                                    $haj = $koneksi->query($jum);
-
-                                                    while($row = mysqli_fetch_array($haj)) {
-                                                        echo $row['Avg(uts2)'];
-                                                    }
-                                                ?></td>
+                                            <td> </td>
                                             <td> <?php echo "<a href='edit.php?nis=$data[nis]'>"?><input type="submit" name="ubah" value="ubah" class="btn btn-info btn-sm"></a> <?php echo "<a href='?nis=$data[nis]'>"?><input type="submit" name="hapus" value="hapus" class="btn btn-danger btn-sm"></a></td>
                                         </tr>
 

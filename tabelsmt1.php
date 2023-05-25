@@ -264,7 +264,9 @@
                                             <td> <?php echo $data['tari']; ?></td>
                                             <td> <?php echo $data['tetr']; ?></td>
                                             <td> <?php echo $data['bing']; ?></td>
-                                            <td> <?php echo "<a href='siswasmt1.php?nis=$data[nis]'>"?><input type="submit" name="rapot" value="rapot" class="btn btn-success btn-sm"></a><?php echo "<a href='edit.php?nis=$data[nis]'>"?><input type="submit" name="ubah" value="ubah" class="btn btn-info btn-sm"></a> <?php echo "<a href='?nis=$data[nis]'>"?><input type="submit" name="hapus" value="hapus" class="btn btn-danger btn-sm"></a></td>
+                                            <td> <?php echo "<a href='siswasmt1.php?nis=$data[nis]'>"?><input type="submit" name="rapot" value="rapot" class="btn btn-success btn-sm"></a>
+                                            <?php echo "<a href='ubahsmt1.php?nis=$data[nis]'>"?><input type="submit" name="ubah" value="ubah" class="btn btn-info btn-sm"></a> 
+                                            <?php echo "<a href='?nis=$data[nis]'>"?><input type="submit" name="hapus" value="hapus" class="btn btn-danger btn-sm"></a></td>
                                         </tr>
 
                                     <?php

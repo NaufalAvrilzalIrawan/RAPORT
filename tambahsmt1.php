@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Raport Online - Tabel Siswa</title>
+    <title>Raport Online - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -191,76 +191,177 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Tabel</h1>
-                    <p class="mb-4">Semua informasi siswa</p>
+                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+                        For more information about DataTables, please visit the <a target="_blank"
+                            href="https://datatables.net">official DataTables documentation</a>.</p>
                     <a href="tambahsiswa.php"><input type="submit" name="TAMBAH" value="TAMBAH SISWA" class="btn btn-primary btn-sm"></a>
 
-                    <!-- DataTales Example -->
+                    <!-- Form input siswa -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Tabel Data Siswa</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>NIS</th>
-                                            <th>Nama</th>
-                                            <th>Umur</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Agama</th>
-                                            <th>Kelas</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>NIS</th>
-                                            <th>Nama</th>
-                                            <th>Umur</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Agama</th>
-                                            <th>Kelas</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    <?php
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">INPUT DATA WARGA</h6>
+                                </div>
+                                <div class="card-body">
+                                <form action="" method="post" id="haram" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label>Nama</label>
+                                        <select name="nis" class="form-control">
+                                        <?php
                                         $no = 1;
-                                        $queri = "SELECT * FROM siswa ORDER BY nama";
+                                        $queri = "SELECT * FROM siswa";
                                         $hasil = mysqli_query($koneksi, $queri);
 
                                         while ($data = mysqli_fetch_array($hasil)) {
-                                    ?> 
-                                        <tr><th> <?php echo $no; ?> </th>
-                                            <td> <?php echo $data['nis']; ?></td>
-                                            <td> <?php echo $data['nama']; ?></td>
-                                            <td> <?php echo $data['umur']; ?></td>
-                                            <td> <?php echo $data['gender']; ?></td>
-                                            <td> <?php echo $data['agama']; ?></td>
-                                            <td> <?php echo $data['kelas']; ?></td>
-                                            <td> <?php echo "<a href='siswasmt1.php?nis=$data[nis]'>"?><input type="submit" name="rapot" value="Semester1" class="btn btn-success btn-sm"></a> <?php echo "<a href='ubahsiswa.php?nis=$data[nis]'>"?><input type="submit" name="ubah" value="ubah" class="btn btn-info btn-sm"></a> <?php echo "<a href='?nis=$data[nis]'>"?><input type="submit" name="hapus" value="hapus" onclick="confirm('yakin?')" class="btn btn-danger btn-sm"></a></td>
-                                        </tr>
-
+                                    ?>  
+                                            <option value="<?php echo $data['nis'];?>"><?php echo $data['nama']; ?></option>
                                     <?php
-                                        $no++;
                                         }
                                     ?>
-                                    <?php
-                                        if (isset($_GET['nis'])) {
-                                            mysqli_query($koneksi, "delete from siswa where nis = '$_GET[nis]'");
+                                                
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Pendidikan Agama Islam</label>
+                                        <input type="number" name="pai" required class="form-control" max="100">
+                                    </div>
+                                    <div class="form-row">
+                                        <label>Bahasa Indonesia</label>
+                                        <input type="number" name="bind" class="form-control" max="100">
+                                    </div>
+                                    <div class="form-row">
+                                        <label>Pendidikan Pancasila dan Kewarganegaraan</label>
+                                        <input type="number" name="ppkn" class="form-control" max="100">
+                                    </div>
+                                    <div class="form-row">
+                                        <label>Ilmu Pengetahuan Alam dan Sosial</label>
+                                        <input type="number" name="ipas" class="form-control" max="100">
+                                    </div>
+                                    <div class="form-row">
+                                        <label>Matematika</label>
+                                        <input type="number" name="mtk" class="form-control" max="100">
+                                    </div>
+                                    <div class="form-row">
+                                        <label>Pendidikan Olahraga, Jasmani dan Kesehatan</label>
+                                        <input type="number" name="pjok" class="form-control" max="100">
+                                    </div>
+                                    <div class="form-row">
+                                        <label>Seni Rupa</label>
+                                        <input type="number" name="rupa" class="form-control" max="100">
+                                    </div>
+                                    <div class="form-row">
+                                        <label>Seni Musik</label>
+                                        <input type="number" name="musk" class="form-control" max="100">
+                                    </div>
+                                    <div class="form-row">
+                                        <label>Seni Tari</label>
+                                        <input type="number" name="tari" class="form-control" max="100">
+                                    </div>
+                                    <div class="form-row">
+                                        <label>Seni Teater</label>
+                                        <input type="number" name="tetr" class="form-control" max="100">
+                                    </div>
+                                    <div class="form-row">
+                                        <label>Bahasa Inggris</label>
+                                        <input type="number" name="bing" class="form-control" max="100">
+                                    </div><br>
+                                        <input type="submit" name="masuk" value="MASUK" class="btn btn-primary">
+                                        <input type="submit" name="reset" value="RESET" class="btn btn-warning">
+                                </form>
+                                </div>
+                                <?php
+                                if (isset($_POST['masuk'])) {
+                                    $nis = $_POST['nis'];
+                                    $pai = $_POST['pai'];
+                                    $bind = $_POST['bind'];
+                                    $ppkn = $_POST['ppkn'];
+                                    $ipas = $_POST['ipas'];
+                                    $mtk = $_POST['mtk'];
+                                    $pjok = $_POST['pjok'];
+                                    $rupa = $_POST['rupa'];
+                                    $musk = $_POST['musk'];
+                                    $tari = $_POST['tari'];
+                                    $tetr = $_POST['tetr'];
+                                    $bing = $_POST['bing'];
 
-                                            echo "echo <script> alert('Data Telah Terhapus');</script>";
-                                            echo "<script>window.location.replace('tabelsiswa.php') </script>";
+                                    /*upload gambar
+                                    $gam = upload();
+
+                                    if ( !$gam ) {
+                                        return false;
+                                    }*/
+
+                                    $cock = mysqli_num_rows(mysqli_query($koneksi, "SELECT * from smt1 WHERE nis=$nis"));
+                                    if($cock > 0){
+                                        mysqli_query ($koneksi, "update smt1 set
+                                        pai = '$pai',
+                                        bind = '$bind',
+                                        ppkn = '$ppkn',
+                                        ipas = '$ipas',
+                                        mtk = '$mtk',
+                                        pjok = '$pjok',
+                                        rupa = '$rupa',
+                                        musk = '$musk',
+                                        tari = '$tari',
+                                        tetr = '$tetr',
+                                        bing = '$bing'
+                                        where nis = '$nis'");
+                                
+                                        echo "<script>alert('Data Telah Diubah');</script>";
+                                        echo "<script>alert('Kembali ke Laptop');</script>";
+                                        echo "<script>window.location.replace('tabelsmt1.php') </script>";
+                                    }
+
+                                        else{
+                                            mysqli_query ($koneksi,"INSERT INTO smt1 VALUES ('$nis','$pai','$bind','$ppkn','$ipas','$mtk','$pjok','$rupa','$musk','$tari','$tetr','$bing')");
+                                            echo "<script> alert('Data Baru Telah Ditambahkan');</script>";
+                                            echo "<script>window.location.replace('tabelsmt1.php') </script>";
                                         }
-                                    ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                                }
+
+                                if (isset($_POST['reset'])) {
+                                    echo "<script>alert('BITE THE DUST');</script>";
+                                    echo "<script>window.location.replace('tambahsiswa.php') </script>";
+                                }
+
+                                /*function upload() {
+                                    $namaFile = $_FILES['gam']['name'];
+                                    $ukuranFile = $_FILES['gam']['size'];
+                                    $error = $_FILES['gam']['error'];
+                                    $tmpName = $_FILES['gam']['tmp_name'];
+
+                                    //cek gambar diupload
+                                    if ($error === 4){
+                                        echo "<script> alert('ndak ada gambar'); </script>";
+                                        return false;
+                                    }
+
+                                    //cek jenis file gambar
+                                    $gambarvalid = ['jpg', 'jpeg', 'png'];
+                                    $ekstensigamb = explode('.', $namaFile);
+                                    $ekstensigamb = strtolower(end($ekstensigamb));
+                                    
+                                    if (!in_array($ekstensigamb, $gambarvalid)) {
+                                        echo "<script> alert('file nya sus mang'); </script>";
+                                        return false;
+                                    }
+
+                                    //cek ukuran file gambar
+                                    if ($ukuranFile > 10000000) {
+                                        echo "<script> alert('ukuran file terlalu besar'); </script>";
+                                        return false;
+                                    }
+
+                                    //lolos eliminasi kemunduran
+                                    //buat nama baru
+                                    $namaFileBaru = uniqid();
+                                    $namaFileBaru .= '.';
+                                    $namaFileBaru .= $ekstensigamb;
+
+                                    move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+
+                                    return $namaFileBaru;
+                                }*/
+                            ?>
 
                 </div>
                 <!-- /.container-fluid -->

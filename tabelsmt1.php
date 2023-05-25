@@ -194,7 +194,7 @@
                     <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
                         For more information about DataTables, please visit the <a target="_blank"
                             href="https://datatables.net">official DataTables documentation</a>.</p>
-                    <a href="input.php"><input type="submit" name="TAMBAH" value="TAMBAH" class="btn btn-primary btn-sm"></a>
+                    <a href="tambahsmt1.php"><input type="submit" name="TAMBAH" value="TAMBAH" class="btn btn-primary btn-sm"></a>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -245,7 +245,7 @@
                                     <tbody>
                                     <?php
                                         $no = 1;
-                                        $queri = "SELECT * FROM siswa, smt1 WHERE siswa.nis = smt1.nis";
+                                        $queri = "SELECT * FROM siswa, smt1 WHERE siswa.nis = smt1.nis ORDER BY nama";
                                         $hasil = mysqli_query($koneksi, $queri);
 
                                         while ($data = mysqli_fetch_array($hasil)) {

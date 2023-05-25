@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2023 at 11:33 AM
+-- Generation Time: May 25, 2023 at 04:10 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.2.0
 
@@ -113,7 +113,7 @@ INSERT INTO `siswa` (`nis`, `nama`, `umur`, `gender`, `agama`, `kelas`) VALUES
 ('1920229010035', 'GILANG ANGGI PRATAMA PUTRA', 11, 'L', 'Islam', '4B'),
 ('1920229010036', 'INDAH ANGGRAENI HALAWA', 10, 'P', 'Islam', '4B'),
 ('1920229010037', 'KAYLA ASYIFA OKTAVIA', 9, 'P', 'Islam', '4B'),
-('1920229010038', 'KHANSA SITI AULIA', 9, 'P', 'Islam', '4B'),
+('1920229010038', 'KHANSA SITI AULIA', 11, 'P', 'Islam', '4B'),
 ('1920229010039', 'LIONEL ALVARO ILHAM', 10, 'L', 'Islam', '4B'),
 ('1920229010040', 'MEYKA PUTRI JATI', 10, 'P', 'Islam', '4B'),
 ('1920229010041', 'MUHAMAD LUCKY ADI PUTRA', 11, 'L', 'Islam', '4B'),
@@ -191,7 +191,7 @@ INSERT INTO `smt1` (`nis`, `pai`, `bind`, `ppkn`, `ipas`, `mtk`, `pjok`, `rupa`,
 --
 
 CREATE TABLE `user` (
-  `nisnip` int(20) NOT NULL,
+  `kid` int(20) NOT NULL,
   `password` varchar(15) NOT NULL,
   `nama` varchar(25) NOT NULL,
   `role` varchar(10) NOT NULL
@@ -201,8 +201,9 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`nisnip`, `password`, `nama`, `role`) VALUES
+INSERT INTO `user` (`kid`, `password`, `nama`, `role`) VALUES
 (1, 'jayaindonesia45', 'Naufal Avrilzal Irawan', 'Admin'),
+(4, '145', 'TNVR', 'Admin'),
 (123456789, '123', 'Asep Fernandes', 'Guru'),
 (212210420, '420', 'Naufal Avrilzal Irawan', 'Siswa');
 
@@ -234,7 +235,7 @@ ALTER TABLE `siswa`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`nisnip`);
+  ADD PRIMARY KEY (`kid`);
 
 --
 -- AUTO_INCREMENT for dumped tables

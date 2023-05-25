@@ -22,11 +22,25 @@
 
     <?php
     //membuat variabel menggunakan php
-        session_start();
+    include "koneksi_db.php";
+    session_start();
+        /*if (isset($_COOKIE['nama'])){
+            $nam = $_COOKIE['nama'];
+
+            $result = mysqli_query($koneksi, "SELECT * FROM user WHERE kid = $nam");
+                $_SESSION['nama'] = true;
+        }*/
+        //cek session
         if (isset($_SESSION['login'])){
             echo "<script>window.location.replace('Dashboard.php?') </script>";
         }
-        include "koneksi_db.php";
+
+        //cek cookie
+        /*if (isset ($_POST['ingat'])) {
+            setcookie('login','true', time()+604800);
+            setcookie('nama', $_POST['kid'], time()+604800);
+        }*/
+        
         $queri = "select * from user";
         $hasil = mysqli_query($koneksi, $queri);
     ?>
@@ -56,12 +70,19 @@
 
                                         <div class="form-group">
                                             <label>NIS/NIP</label>
-                                            <input type="text" class="form-control form-control-user"  name="nisp" id="nisp" placeholder="Masukkan NIS/NIP"></input>
+                                            <input type="text" class="form-control form-control-user"  name="kid" id="kid" placeholder="Masukkan NIS/NIP"></input>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Password</label>
                                             <input type="password" class="form-control form-control-user" name="sandi" id="sandi" placeholder="Masukkan Password"></input>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="ingat" name="ingat">
+                                                <label class="custom-control-label" for="ingat">Remember
+                                                    Me</label>
+                                            </div>
                                         </div>
                                         
                                         <input type="submit" name="Login" value="LOGIN" class="btn btn-primary btn-user btn-block"></input>
@@ -117,7 +138,7 @@
 
         include "koneksi_db.php";
 
-        $user = $_POST['nisp'];
+        $user = $_POST['kid'];
         $pass = $_POST['sandi'];
 
         $user = stripcslashes($user);
@@ -132,8 +153,10 @@
 
         if ($cek==1) {
             echo "<script>alert('Anda Berhasil Masuk');</script>";
+            $nama = $array['nama'];
             $_SESSION['login'] = true;
-            $_SESSION['nama'] = $array['nama'];
+            $_SESSION['nama'] = $nama;
+            
             echo "<script>window.location.replace('Dashboard.php?') </script>";
         }
         else {

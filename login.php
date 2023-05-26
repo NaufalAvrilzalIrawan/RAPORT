@@ -24,23 +24,11 @@
     //membuat variabel menggunakan php
     include "koneksi_db.php";
     session_start();
-        /*if (isset($_COOKIE['nama'])){
-            $nam = $_COOKIE['nama'];
-
-            $result = mysqli_query($koneksi, "SELECT * FROM user WHERE kid = $nam");
-                $_SESSION['nama'] = true;
-        }*/
+        
         //cek session
         if (isset($_SESSION['login'])){
             echo "<script>window.location.replace('Dashboard.php?') </script>";
         }
-
-        //cek cookie
-        /*if (isset ($_POST['ingat'])) {
-            setcookie('login','true', time()+604800);
-            setcookie('nama', $_POST['kid'], time()+604800);
-        }*/
-        
         $queri = "select * from user";
         $hasil = mysqli_query($koneksi, $queri);
     ?>
@@ -156,6 +144,7 @@
             $nama = $array['nama'];
             $_SESSION['login'] = true;
             $_SESSION['nama'] = $nama;
+            
             
             echo "<script>window.location.replace('Dashboard.php?') </script>";
         }

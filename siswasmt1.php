@@ -236,7 +236,59 @@
                                 <td> : </td>
                                 <td> <?php echo $data['kelas']; ?> </td>
                             </tr>
-                        </table>
+                        </table><br>
+                        <div class="row">
+                        <div class="col-xl-3 col-md-4 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Pelajaran paling dikuasai</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?php
+                                                    $jum = "SELECT greatest(pai, bind, ppkn, ipas, mtk, pjok, rupa, musk, tari, tetr, bing) as ikeh FROM sys.columns WHERE nis = '$_GET[nis]'";
+                                                    $haj = $koneksi->query($jum);
+
+                                                    while($row = mysqli_fetch_array($haj)) {
+                                                        echo $row['ikeh'];
+                                                    }
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-people fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-4 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                                Pelajaran paling tidak dikuasai</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?php
+                                                    $jum = "select count(nama) from siswa";
+                                                    $haj = $koneksi->query($jum);
+
+                                                    while($row = mysqli_fetch_array($haj)) {
+                                                        echo $row['count(nama)'];
+                                                    }
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-people fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
                         <br>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

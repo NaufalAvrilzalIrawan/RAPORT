@@ -193,16 +193,11 @@
                     $sql = mysqli_query($koneksi, "SELECT * from siswa where nis='$_GET[nis]'");
                     $data = mysqli_fetch_array($sql)
                     ?>
-                    <h1 class="h3 mb-2 text-gray-800">Tabel</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
-                    <a href="input.php"><input type="submit" name="TAMBAH" value="TAMBAH" class="btn btn-primary btn-sm"></a>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Tabel Data Warga</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">RAPORT SEMESTER 1</h6>
                         </div>
                         <div class="card-body">
                         <table style="text-align:left;">
@@ -244,14 +239,14 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Pelajaran paling dikuasai</div>
+                                                Nilai Tertinggi</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
-                                                    $jum = "SELECT greatest(pai, bind, ppkn, ipas, mtk, pjok, rupa, musk, tari, tetr, bing) as ikeh FROM sys.columns WHERE nis = '$_GET[nis]'";
+                                                    $jum = "SELECT GREATEST(pai, bind, ppkn, ipas, mtk, pjok, rupa, musk, tari, tetr, bing) AS tinggi FROM smt1 WHERE nis = '$_GET[nis]'";
                                                     $haj = $koneksi->query($jum);
 
                                                     while($row = mysqli_fetch_array($haj)) {
-                                                        echo $row['ikeh'];
+                                                        echo $row['tinggi'];
                                                     }
                                                 ?>
                                             </div>
@@ -269,14 +264,39 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                                Pelajaran paling tidak dikuasai</div>
+                                                Nilai Terendah</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
-                                                    $jum = "select count(nama) from siswa";
+                                                    $jum = "SELECT LEAST(pai, bind, ppkn, ipas, mtk, pjok, rupa, musk, tari, tetr, bing) AS rendah FROM smt1 WHERE nis = '$_GET[nis]'";
                                                     $haj = $koneksi->query($jum);
 
                                                     while($row = mysqli_fetch_array($haj)) {
-                                                        echo $row['count(nama)'];
+                                                        echo $row['rendah'];
+                                                    }
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-people fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-4 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Rata-Rata Nilai</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?php
+                                                    $jum = "SELECT MAX(pai + bind + ppkn + ipas + mtk + pjok + rupa + musk + tari + tetr + bing) / 11 AS rata FROM smt1 WHERE nis = '$_GET[nis]'";
+                                                    $haj = $koneksi->query($jum);
+
+                                                    while($row = mysqli_fetch_array($haj)) {
+                                                        echo $row['rata'];
                                                     }
                                                 ?>
                                             </div>

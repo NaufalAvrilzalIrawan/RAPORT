@@ -188,17 +188,11 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tabel</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
-                    <a href="tambahsiswa.php"><input type="submit" name="TAMBAH" value="TAMBAH SISWA" class="btn btn-primary btn-sm"></a>
 
                     <!-- Form input siswa -->
                     <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">INPUT DATA WARGA</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">INPUT DATA SISWA</h6>
                                 </div>
                                 <div class="card-body">
                                 <form action="" method="post" id="haram" enctype="multipart/form-data">
@@ -245,12 +239,12 @@
                                 </div>
                                 <?php
                                 if (isset($_POST['masuk'])) {
-                                    $nis = $_POST['nis'];
-                                    $nam = $_POST['nam'];
-                                    $umr = $_POST['umr'];
-                                    $agm = $_POST['agm'];
-                                    $kel = $_POST['kel'];
-                                    $kls = $_POST['kls'];
+                                    $nis = htmlspecialchars($_POST['nis']);
+                                    $nam = htmlspecialchars($_POST['nam']);
+                                    $umr = htmlspecialchars($_POST['umr']);
+                                    $agm = htmlspecialchars($_POST['agm']);
+                                    $kel = htmlspecialchars($_POST['kel']);
+                                    $kls = htmlspecialchars($_POST['kls']);
 
                                     /*upload gambar
                                     $gam = upload();
@@ -271,7 +265,7 @@
                                 }
 
                                 if (isset($_POST['reset'])) {
-                                    echo "<script>alert('BITE THE DUST');</script>";
+                                    echo "<script>alert('Kembali');</script>";
                                     echo "<script>window.location.replace('tambahsiswa.php') </script>";
                                 }
 

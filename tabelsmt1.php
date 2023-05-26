@@ -189,18 +189,14 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tabel</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
-                    <a href="tambahsmt1.php"><input type="submit" name="TAMBAH" value="TAMBAH" class="btn btn-primary btn-sm"></a>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Tabel Data Warga</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">TABEL DATA NILAI SEMESTER 1</h6>
                         </div>
                         <div class="card-body">
+                        <a href="tambahsmt1.php"><input type="submit" name="TAMBAH" value="TAMBAH" class="btn btn-primary btn-sm"></a>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -265,11 +261,19 @@
                                             <td> <?php echo $data['bing']; ?></td>
                                             <td> <?php echo "<a href='siswasmt1.php?nis=$data[nis]'>"?><input type="submit" name="rapot" value="rapot" class="btn btn-success btn-sm"></a>
                                             <?php echo "<a href='ubahsmt1.php?nis=$data[nis]'>"?><input type="submit" name="ubah" value="ubah" class="btn btn-info btn-sm"></a> 
-                                            <?php echo "<a href='?nis=$data[nis]'>"?><input type="submit" name="hapus" value="hapus" class="btn btn-danger btn-sm"></a></td>
+                                            <?php echo "<a href='?nis=$data[nis]'>"?><input type="submit" name="hapus" value="hapus" onclick="return confirm('Ingin menghapus nilai?')" class="btn btn-danger btn-sm"></a></td>
                                         </tr>
 
                                     <?php
                                         $no++;
+                                        }
+                                    ?>
+                                    <?php
+                                        if (isset($_GET['nis'])) {
+                                            mysqli_query($koneksi, "DELETE FROM smt1 WHERE nis = '$_GET[nis]'");
+
+                                            echo "echo <script> alert('Data Telah Terhapus');</script>";
+                                            echo "<script>window.location.replace('tabelsiswa.php') </script>";
                                         }
                                     ?>
                                     </tbody>

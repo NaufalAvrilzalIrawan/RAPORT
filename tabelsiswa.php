@@ -189,16 +189,15 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tabel</h1>
-                    <p class="mb-4">Semua informasi siswa</p>
-                    <a href="tambahsiswa.php"><input type="submit" name="TAMBAH" value="TAMBAH SISWA" class="btn btn-primary btn-sm"></a>
+                    <h1 class="h3 mb-2 text-gray-800">Daftar informasi siswa</h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Tabel Data Siswa</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">TABEL DATA SISWA</h6>
                         </div>
                         <div class="card-body">
+                        <a href="tambahsiswa.php"><input type="submit" name="TAMBAH" value="TAMBAH SISWA" class="btn btn-primary btn-sm"></a><br>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -240,7 +239,9 @@
                                             <td> <?php echo $data['gender']; ?></td>
                                             <td> <?php echo $data['agama']; ?></td>
                                             <td> <?php echo $data['kelas']; ?></td>
-                                            <td> <?php echo "<a href='siswasmt1.php?nis=$data[nis]'>"?><input type="submit" name="rapot" value="Semester1" class="btn btn-success btn-sm"></a> <?php echo "<a href='ubahsiswa.php?nis=$data[nis]'>"?><input type="submit" name="ubah" value="ubah" class="btn btn-info btn-sm"></a> <?php echo "<a href='?nis=$data[nis]'>"?><input type="submit" name="hapus" value="hapus" onclick="confirm('yakin?')" class="btn btn-danger btn-sm"></a></td>
+                                            <td> <?php echo "<a href='siswasmt1.php?nis=$data[nis]'>"?><input type="submit" name="rapot" value="Semester1" class="btn btn-success btn-sm"></a>
+                                            <?php echo "<a href='ubahsiswa.php?nis=$data[nis]'>"?><input type="submit" name="ubah" value="ubah" class="btn btn-info btn-sm"></a>
+                                            <?php echo "<a href='?nis=$data[nis]'>"?><input type="submit" name="hapus" value="hapus" onclick="return confirm('Ingin menghapus data <?php echo $data['nama']; ?>?')" class="btn btn-danger btn-sm"></a></td>
                                         </tr>
 
                                     <?php
@@ -249,7 +250,7 @@
                                     ?>
                                     <?php
                                         if (isset($_GET['nis'])) {
-                                            mysqli_query($koneksi, "delete from siswa where nis = '$_GET[nis]'");
+                                            mysqli_query($koneksi, "DELETE FROM siswa WHERE nis = '$_GET[nis]'");
 
                                             echo "echo <script> alert('Data Telah Terhapus');</script>";
                                             echo "<script>window.location.replace('tabelsiswa.php') </script>";

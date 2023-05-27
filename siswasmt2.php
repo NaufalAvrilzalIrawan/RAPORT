@@ -91,8 +91,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Nilai Detail dari:</h6>
-                        <a class="collapse-item active" href="tabelsmt1.php">Semester 1</a>
-                        <a class="collapse-item" href="tabelsmt2.php">Semester 2</a>
+                        <a class="collapse-item" href="tabelsmt1.php">Semester 1</a>
+                        <a class="collapse-item active" href="tabelsmt2.php">Semester 2</a>
                     </div>
                 </div>
             </li>
@@ -239,7 +239,7 @@
                                                 Nilai Tertinggi</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
-                                                    $jum = "SELECT GREATEST(pai, bind, ppkn, ipas, mtk, pjok, rupa, musk, tari, tetr, bing) AS tinggi FROM smt1 WHERE nis = '$_GET[nis]'";
+                                                    $jum = "SELECT GREATEST(pai, bind, ppkn, ipas, mtk, pjok, rupa, musk, tari, tetr, bing) AS tinggi FROM smt2 WHERE nis = '$_GET[nis]'";
                                                     $haj = $koneksi->query($jum);
 
                                                     while($row = mysqli_fetch_array($haj)) {
@@ -264,7 +264,7 @@
                                                 Nilai Terendah</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
-                                                    $jum = "SELECT LEAST(pai, bind, ppkn, ipas, mtk, pjok, rupa, musk, tari, tetr, bing) AS rendah FROM smt1 WHERE nis = '$_GET[nis]'";
+                                                    $jum = "SELECT LEAST(pai, bind, ppkn, ipas, mtk, pjok, rupa, musk, tari, tetr, bing) AS rendah FROM smt2 WHERE nis = '$_GET[nis]'";
                                                     $haj = $koneksi->query($jum);
 
                                                     while($row = mysqli_fetch_array($haj)) {
@@ -289,7 +289,7 @@
                                                 Rata-Rata Nilai</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
-                                                    $jum = "SELECT MAX(pai + bind + ppkn + ipas + mtk + pjok + rupa + musk + tari + tetr + bing) / 11 AS rata FROM smt1 WHERE nis = '$_GET[nis]'";
+                                                    $jum = "SELECT MAX(pai + bind + ppkn + ipas + mtk + pjok + rupa + musk + tari + tetr + bing) / 11 AS rata FROM smt2 WHERE nis = '$_GET[nis]'";
                                                     $haj = $koneksi->query($jum);
 
                                                     while($row = mysqli_fetch_array($haj)) {
@@ -331,7 +331,7 @@
                                     </tfoot>
                                     <tbody>
                                     <?php
-                                    $sql = mysqli_query($koneksi, "SELECT * from smt1 where nis='$_GET[nis]'");
+                                    $sql = mysqli_query($koneksi, "SELECT * from smt2 where nis='$_GET[nis]'");
                                     $data = mysqli_fetch_array($sql)
                                     ?>
                                         <tr>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>R.O - Dashboard</title>
+    <title>R.O - Tabel Semester 1</title>
     <link rel="icon" type="image/x-icon" href="img/LogoDinasPendidikan.png">
 
     <!-- Custom fonts for this template-->
@@ -50,7 +50,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="Dashboard.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -79,20 +79,20 @@
                     </div>
                 </div>
             </li>
-            
+
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-table"></i>
                     <span>NILAI</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Nilai Detail dari:</h6>
                         <a class="collapse-item" href="tabelsmt1.php">Semester 1</a>
-                        <a class="collapse-item" href="tabelsmt2.php">Semester 2</a>
+                        <a class="collapse-item active" href="tabelsmt2.php">Semester 2</a>
                     </div>
                 </div>
             </li>
@@ -186,142 +186,100 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                    </div>
-                    <h4>Selamat Datang Kembali,
-                        <!--menampilkan nama dari user-->
-                        <?php
-                            echo $_SESSION['nama'];
-                        ?>
-                    </h4>
 
-                    <!-- Content Row -->
-                    <div class="row">
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">TABEL DATA NILAI SEMESTER 2</h6>
+                        </div>
+                        <div class="card-body">
+                        <a href="tambahsmt2.php"><input type="submit" name="TAMBAH" value="TAMBAH" class="btn btn-primary btn-sm"></a>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>NIS</th>
+                                            <th>Nama</th>
+                                            <th>PAI</th>
+                                            <th>Bahasa Indonesia</th>
+                                            <th>PPKN</th>
+                                            <th>IPAS</th>
+                                            <th>MTK</th>
+                                            <th>PJOK</th>
+                                            <th>Seni Rupa</th>
+                                            <th>Seni Musik</th>
+                                            <th>Seni Tari</th>
+                                            <th>Seni Teater</th>
+                                            <th>Bahasa Inggris</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>NIS</th>
+                                            <th>Nama</th>
+                                            <th>PAI</th>
+                                            <th>Bahasa Indonesia</th>
+                                            <th>PPKN</th>
+                                            <th>IPAS</th>
+                                            <th>MTK</th>
+                                            <th>PJOK</th>
+                                            <th>Seni Rupa</th>
+                                            <th>Seni Musik</th>
+                                            <th>Seni Tari</th>
+                                            <th>Seni Teater</th>
+                                            <th>Bahasa Inggris</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    <?php
+                                        $no = 1;
+                                        $queri = "SELECT * FROM siswa, smt2 WHERE siswa.nis = smt2.nis ORDER BY nama";
+                                        $hasil = mysqli_query($koneksi, $queri);
 
-                        <!-- Menunjukkan Jumlah Siswa -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Jumlah Siswa</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <?php
-                                                    $jum = "select count(nama) from siswa";
-                                                    $haj = $koneksi->query($jum);
+                                        while ($data = mysqli_fetch_array($hasil)) {
+                                    ?> 
+                                        <tr><th> <?php echo $no; ?> </th>
+                                            <td> <?php echo $data['nis']; ?></td>
+                                            <td> <?php echo $data['nama']; ?></td>
+                                            <td> <?php echo $data['pai']; ?></td>
+                                            <td> <?php echo $data['bind']; ?></td>
+                                            <td> <?php echo $data['ppkn']; ?></td>
+                                            <td> <?php echo $data['ipas']; ?></td>
+                                            <td> <?php echo $data['mtk']; ?></td>
+                                            <td> <?php echo $data['pjok']; ?></td>
+                                            <td> <?php echo $data['rupa']; ?></td>
+                                            <td> <?php echo $data['musk']; ?></td>
+                                            <td> <?php echo $data['tari']; ?></td>
+                                            <td> <?php echo $data['tetr']; ?></td>
+                                            <td> <?php echo $data['bing']; ?></td>
+                                            <td> <?php echo "<a href='siswasmt2.php?nis=$data[nis]'>"?><input type="submit" name="rapot" value="rapot" class="btn btn-success btn-sm"></a>
+                                            <?php echo "<a href='ubahsmt2.php?nis=$data[nis]'>"?><input type="submit" name="ubah" value="ubah" class="btn btn-info btn-sm"></a> 
+                                            <?php echo "<a href='?nis=$data[nis]'>"?><input type="submit" name="hapus" value="hapus" onclick="return confirm('Ingin menghapus nilai?')" class="btn btn-danger btn-sm"></a></td>
+                                        </tr>
 
-                                                    while($row = mysqli_fetch_array($haj)) {
-                                                        echo $row['count(nama)'];
-                                                    }
-                                                ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-laugh fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <?php
+                                        $no++;
+                                        }
+                                    ?>
+                                    <?php
+                                        if (isset($_GET['nis'])) {
+                                            mysqli_query($koneksi, "DELETE FROM smt2 WHERE nis = '$_GET[nis]'");
+
+                                            echo "echo <script> alert('Data Telah Terhapus');</script>";
+                                            echo "<script>window.location.replace('tabelsmt2.php') </script>";
+                                        }
+                                    ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-
-                        <!-- Menunjukkan Jumlah Mapel -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Jumlah Mata Pelajaran</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <?php
-                                                    $jum = "select count(namapel) from pelajaran";
-                                                    $haj = $koneksi->query($jum);
-
-                                                    while($row = mysqli_fetch_array($haj)) {
-                                                        echo $row['count(namapel)'];
-                                                    }
-                                                ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Menunjukkan rata-rata nilai di semester 1 yang telah masuk -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Rata-rata nilai Semester 1 terbesar
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                    <?php
-                                                        $hum = "SELECT max(pai + bind + ppkn + ipas + mtk + pjok + rupa + musk + tari + tetr + bing) / 11 AS rata FROM smt1";
-                                                        $haj = $koneksi->query($hum);
-    
-                                                        while($row = mysqli_fetch_array($haj)) {
-                                                            echo $row['rata'];
-                                                        }
-                                                    ?>
-                                                    </div>
-                                                </div>
-        
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Menunjukkan rata-rata nilai di semester 2 yang telah masuk -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Rata-rata nilai Semester 2 terbesar
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                    <?php
-                                                        $hum = "SELECT max(pai + bind + ppkn + ipas + mtk + pjok + rupa + musk + tari + tetr + bing) / 11 AS rata FROM smt2";
-                                                        $haj = $koneksi->query($hum);
-    
-                                                        while($row = mysqli_fetch_array($haj)) {
-                                                            echo $row['rata'];
-                                                        }
-                                                    ?>
-                                                    </div>
-                                                </div>
-        
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
 
-
+                </div>
                 <!-- /.container-fluid -->
 
             </div>
@@ -354,14 +312,14 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Apakah anda ingin Logout?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Tekan "Logout" untuk kembali ke halaman Login</div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="logout.php">Logout</a>
                 </div>
             </div>
@@ -380,10 +338,13 @@
 
     <!-- Page level plugins -->
     <script src="sbadmin/vendor/chart.js/Chart.min.js"></script>
+    <script src="sbadmin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="sbadmin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="sbadmin/js/demo/chart-area-demo.js"></script>
     <script src="sbadmin/js/demo/chart-pie-demo.js"></script>
+    <script src="sbadmin/js/demo/datatables-demo.js"></script>
 
 </body>
 

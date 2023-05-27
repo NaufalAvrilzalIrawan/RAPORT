@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>R.O - Dashboard</title>
+    <title>R.O - Ubah Semester 1</title>
     <link rel="icon" type="image/x-icon" href="img/LogoDinasPendidikan.png">
 
     <!-- Custom fonts for this template-->
@@ -50,7 +50,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="Dashboard.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -81,18 +81,18 @@
             </li>
             
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-table"></i>
                     <span>NILAI</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Nilai Detail dari:</h6>
                         <a class="collapse-item" href="tabelsmt1.php">Semester 1</a>
-                        <a class="collapse-item" href="tabelsmt2.php">Semester 2</a>
+                        <a class="collapse-item active" href="tabelsmt2.php">Semester 2</a>
                     </div>
                 </div>
             </li>
@@ -186,142 +186,156 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                    </div>
-                    <h4>Selamat Datang Kembali,
-                        <!--menampilkan nama dari user-->
-                        <?php
-                            echo $_SESSION['nama'];
-                        ?>
-                    </h4>
 
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Menunjukkan Jumlah Siswa -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Jumlah Siswa</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <?php
-                                                    $jum = "select count(nama) from siswa";
-                                                    $haj = $koneksi->query($jum);
-
-                                                    while($row = mysqli_fetch_array($haj)) {
-                                                        echo $row['count(nama)'];
-                                                    }
-                                                ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-laugh fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
+                    <!-- Form input siswa -->
+                    <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">UBAH DATA NILAI</h6>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Menunjukkan Jumlah Mapel -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Jumlah Mata Pelajaran</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <?php
-                                                    $jum = "select count(namapel) from pelajaran";
-                                                    $haj = $koneksi->query($jum);
-
-                                                    while($row = mysqli_fetch_array($haj)) {
-                                                        echo $row['count(namapel)'];
-                                                    }
-                                                ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
+                                <?php
+                                $sql = mysqli_query($koneksi, "SELECT * FROM smt2, siswa WHERE smt2.nis = siswa.nis AND smt2.nis = '$_GET[nis]'");
+                                $data = mysqli_fetch_array($sql)
+                                ?>
+                                <form action="" method="post" id="haram" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label>Nama</label>
+                                        <input type="text" name="nis" class="form-control" readonly value="<?php echo $data['nama']?>">
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Menunjukkan rata-rata nilai di semester 1 yang telah masuk -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Rata-rata nilai Semester 1 terbesar
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                    <?php
-                                                        $hum = "SELECT max(pai + bind + ppkn + ipas + mtk + pjok + rupa + musk + tari + tetr + bing) / 11 AS rata FROM smt1";
-                                                        $haj = $koneksi->query($hum);
-    
-                                                        while($row = mysqli_fetch_array($haj)) {
-                                                            echo $row['rata'];
-                                                        }
-                                                    ?>
-                                                    </div>
-                                                </div>
-        
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
+                                    <div class="form-group">
+                                        <label>Pendidikan Agama Islam</label>
+                                        <input type="number" name="pai" class="form-control" max="100" value="<?php echo $data['pai']?>">
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Menunjukkan rata-rata nilai di semester 2 yang telah masuk -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Rata-rata nilai Semester 2 terbesar
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                    <?php
-                                                        $hum = "SELECT max(pai + bind + ppkn + ipas + mtk + pjok + rupa + musk + tari + tetr + bing) / 11 AS rata FROM smt2";
-                                                        $haj = $koneksi->query($hum);
-    
-                                                        while($row = mysqli_fetch_array($haj)) {
-                                                            echo $row['rata'];
-                                                        }
-                                                    ?>
-                                                    </div>
-                                                </div>
-        
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
+                                    <div class="form-group">
+                                        <label>Bahasa Indonesia</label>
+                                        <input type="number" name="bind" class="form-control" max="100" value="<?php echo $data['bind']?>">
                                     </div>
+                                    <div class="form-group">
+                                        <label>Pendidikan Pancasila dan Kewarganegaraan</label>
+                                        <input type="number" name="ppkn" class="form-control" max="100" value="<?php echo $data['ppkn']?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ilmu Pengetahuan Alam dan Sosial</label>
+                                        <input type="number" name="ipas" class="form-control" max="100" value="<?php echo $data['ipas']?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Matematika</label>
+                                        <input type="number" name="mtk" class="form-control" max="100" value="<?php echo $data['mtk']?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Pendidikan Olahraga, Jasmani dan Kesehatan</label>
+                                        <input type="number" name="pjok" class="form-control" max="100" value="<?php echo $data['pjok']?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Seni Rupa</label>
+                                        <input type="number" name="rupa" class="form-control" max="100" value="<?php echo $data['rupa']?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Seni Musik</label>
+                                        <input type="number" name="musk" class="form-control" max="100" value="<?php echo $data['musk']?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Seni Tari</label>
+                                        <input type="number" name="tari" class="form-control" max="100" value="<?php echo $data['tari']?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Seni Teater</label>
+                                        <input type="number" name="tetr" class="form-control" max="100" value="<?php echo $data['tetr']?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Bahasa Inggris</label>
+                                        <input type="number" name="bing" class="form-control" max="100" value="<?php echo $data['bing']?>">
+                                    </div>
+                                        <input type="submit" name="ubah" value="UBAH" class="btn btn-primary">
+                                        <input type="submit" name="reset" value="RESET" class="btn btn-warning">
+                                </form>
                                 </div>
-                            </div>
-                        </div>
+                                <?php
+                                if (isset($_POST['ubah'])) {
+                                    $nis = $_GET['nis'];
+                                    $pai = $_POST['pai'];
+                                    $bind = $_POST['bind'];
+                                    $ppkn = $_POST['ppkn'];
+                                    $ipas = $_POST['ipas'];
+                                    $mtk = $_POST['mtk'];
+                                    $pjok = $_POST['pjok'];
+                                    $rupa = $_POST['rupa'];
+                                    $musk = $_POST['musk'];
+                                    $tari = $_POST['tari'];
+                                    $tetr = $_POST['tetr'];
+                                    $bing = $_POST['bing'];
 
-                    </div>
+                                    mysqli_query ($koneksi, "update smt2 set
+                                    pai = '$pai',
+                                    bind = '$bind',
+                                    ppkn = '$ppkn',
+                                    ipas = '$ipas',
+                                    mtk = '$mtk',
+                                    pjok = '$pjok',
+                                    rupa = '$rupa',
+                                    musk = '$musk',
+                                    tari = '$tari',
+                                    tetr = '$tetr',
+                                    bing = '$bing'
+                                    where nis = '$nis'");
+                                
+                                    echo "<script>alert('Data Telah Diubah. Kembali');</script>";
+                                    echo "<script>window.location.replace('tabelsmt2.php') </script>";
 
+                                    /*upload gambar
+                                    $gam = upload();
 
+                                    if ( !$gam ) {
+                                        return false;
+                                    }*/    
+                                }
+
+                                if (isset($_POST['reset'])) {
+                                    echo "<script>alert('Kembali');</script>";
+                                    echo "<script>window.location.replace('ubahsmt2.php?nis=$_GET[nis]') </script>";
+                                }
+
+                                /*function upload() {
+                                    $namaFile = $_FILES['gam']['name'];
+                                    $ukuranFile = $_FILES['gam']['size'];
+                                    $error = $_FILES['gam']['error'];
+                                    $tmpName = $_FILES['gam']['tmp_name'];
+
+                                    //cek gambar diupload
+                                    if ($error === 4){
+                                        echo "<script> alert('ndak ada gambar'); </script>";
+                                        return false;
+                                    }
+
+                                    //cek jenis file gambar
+                                    $gambarvalid = ['jpg', 'jpeg', 'png'];
+                                    $ekstensigamb = explode('.', $namaFile);
+                                    $ekstensigamb = strtolower(end($ekstensigamb));
+                                    
+                                    if (!in_array($ekstensigamb, $gambarvalid)) {
+                                        echo "<script> alert('file nya sus mang'); </script>";
+                                        return false;
+                                    }
+
+                                    //cek ukuran file gambar
+                                    if ($ukuranFile > 10000000) {
+                                        echo "<script> alert('ukuran file terlalu besar'); </script>";
+                                        return false;
+                                    }
+
+                                    //lolos eliminasi kemunduran
+                                    //buat nama baru
+                                    $namaFileBaru = uniqid();
+                                    $namaFileBaru .= '.';
+                                    $namaFileBaru .= $ekstensigamb;
+
+                                    move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+
+                                    return $namaFileBaru;
+                                }*/
+                            ?>
+
+                </div>
                 <!-- /.container-fluid -->
 
             </div>
@@ -354,14 +368,14 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Apakah anda ingin Logout?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Tekan "Logout" untuk kembali ke halaman Login</div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="logout.php">Logout</a>
                 </div>
             </div>
@@ -380,10 +394,13 @@
 
     <!-- Page level plugins -->
     <script src="sbadmin/vendor/chart.js/Chart.min.js"></script>
+    <script src="sbadmin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="sbadmin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="sbadmin/js/demo/chart-area-demo.js"></script>
     <script src="sbadmin/js/demo/chart-pie-demo.js"></script>
+    <script src="sbadmin/js/demo/datatables-demo.js"></script>
 
 </body>
 

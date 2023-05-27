@@ -65,17 +65,17 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>DATA</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data detail dari:</h6>
                         <a class="collapse-item" href="tabelsiswa.php">Siswa</a>
-                        <a class="collapse-item" href="tabelnilai.php">Nilai</a>
+                        <a class="collapse-item active" href="tabelnilai.php">Nilai</a>
                     </div>
                 </div>
             </li>
@@ -168,10 +168,6 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="profil.php">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -189,7 +185,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <a href="input.php"><input type="submit" name="TAMBAH" value="TAMBAH" class="btn btn-primary btn-sm"></a>
+                    
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -206,7 +202,6 @@
                                             <th>Nama</th>
                                             <th>Semester 1</th>
                                             <th>Semester 2</th>
-                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -216,7 +211,6 @@
                                             <th>Nama</th>
                                             <th>Semester 1</th>
                                             <th>Semester 2</th>
-                                            <th>Aksi</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -238,9 +232,19 @@
                                                     while($row = mysqli_fetch_array($haj)) {
                                                         echo $row['rata'];
                                                     }
-                                                ?></td>
-                                            <td> </td>
-                                            <td> <?php echo "<a href='edit.php?nis=$data[nis]'>"?><input type="submit" name="ubah" value="ubah" class="btn btn-info btn-sm"></a> <?php echo "<a href='?nis=$data[nis]'>"?><input type="submit" name="hapus" value="hapus" class="btn btn-danger btn-sm"></a></td>
+                                                ?>
+                                                <?php echo "<a href='siswasmt1.php?nis=$data[nis]'>"?><input type="submit" name="ubah" value="RAPORT" class="btn btn-info btn-sm"></a>
+                                            </td>
+                                            <td> <?php
+                                                    $hum = "SELECT (pai + bind + ppkn + ipas + mtk + pjok + rupa + musk + tari + tetr + bing) / 11 AS rata FROM smt2 WHERE nis = $data[nis]";
+                                                    $haj = $koneksi->query($hum);
+
+                                                    while($row = mysqli_fetch_array($haj)) {
+                                                        echo $row['rata'];
+                                                    }
+                                                ?>
+                                                <?php echo "<a href='siswasmt2.php?nis=$data[nis]'>"?><input type="submit" name="ubah" value="RAPORT" class="btn btn-info btn-sm"></a>
+                                            </td>
                                         </tr>
 
                                     <?php

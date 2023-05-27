@@ -51,7 +51,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="Dashboard.php">
+                <a class="nav-link" href="Siswa.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -63,36 +63,20 @@
             <div class="sidebar-heading">
                 BASIS DATA
             </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>DATA</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Data detail dari:</h6>
-                        <a class="collapse-item" href="tabelsiswa.php">Siswa</a>
-                        <a class="collapse-item" href="tabelnilai.php">Nilai</a>
-                    </div>
-                </div>
-            </li>
-
+            
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>NILAI</span>
+                    <span>RAPOT</span>
                 </a>
                 <div id="collapseUtilities" class="collapse show" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Nilai Detail dari:</h6>
-                        <a class="collapse-item active" href="tabelsmt1.php">Semester 1</a>
-                        <a class="collapse-item" href="tabelsmt2.php">Semester 2</a>
+                        <a class="collapse-item" href="siswasmt1s.php">Semester 1</a>
+                        <a class="collapse-item active" href="siswasmt2s.php">Semester 2</a>
                     </div>
                 </div>
             </li>
@@ -185,11 +169,9 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <button onclick="window.print()">Print this page</button>
-
                     <!-- Page Heading -->
                     <?php
-                    $sql = mysqli_query($koneksi, "SELECT * from siswa where nis='$_GET[nis]'");
+                    $sql = mysqli_query($koneksi, "SELECT * from siswa where nama='$_SESSION[nama]'");
                     $data = mysqli_fetch_array($sql)
                     ?>
 
@@ -241,7 +223,7 @@
                                                 Nilai Tertinggi</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
-                                                    $jum = "SELECT GREATEST(pai, bind, ppkn, ipas, mtk, pjok, rupa, musk, tari, tetr, bing) AS tinggi FROM smt1 WHERE nis = '$_GET[nis]'";
+                                                    $jum = "SELECT GREATEST(pai, bind, ppkn, ipas, mtk, pjok, rupa, musk, tari, tetr, bing) AS tinggi FROM smt2, siswa WHERE siswa.nis = smt2.nis AND siswa.nama='$_SESSION[nama]'";
                                                     $haj = $koneksi->query($jum);
 
                                                     while($row = mysqli_fetch_array($haj)) {
@@ -266,7 +248,7 @@
                                                 Nilai Terendah</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
-                                                    $jum = "SELECT LEAST(pai, bind, ppkn, ipas, mtk, pjok, rupa, musk, tari, tetr, bing) AS rendah FROM smt1 WHERE nis = '$_GET[nis]'";
+                                                    $jum = "SELECT LEAST(pai, bind, ppkn, ipas, mtk, pjok, rupa, musk, tari, tetr, bing) AS rendah FROM smt2, siswa WHERE siswa.nis = smt2.nis AND siswa.nama='$_SESSION[nama]'";
                                                     $haj = $koneksi->query($jum);
 
                                                     while($row = mysqli_fetch_array($haj)) {
@@ -291,7 +273,7 @@
                                                 Rata-Rata Nilai</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
-                                                    $jum = "SELECT MAX(pai + bind + ppkn + ipas + mtk + pjok + rupa + musk + tari + tetr + bing) / 11 AS rata FROM smt1 WHERE nis = '$_GET[nis]'";
+                                                    $jum = "SELECT MAX(pai + bind + ppkn + ipas + mtk + pjok + rupa + musk + tari + tetr + bing) / 11 AS rata FROM smt2, siswa WHERE siswa.nis = smt2.nis AND siswa.nama='$_SESSION[nama]'";
                                                     $haj = $koneksi->query($jum);
 
                                                     while($row = mysqli_fetch_array($haj)) {
@@ -333,7 +315,7 @@
                                     </tfoot>
                                     <tbody>
                                     <?php
-                                    $sql = mysqli_query($koneksi, "SELECT * from smt1 where nis='$_GET[nis]'");
+                                    $sql = mysqli_query($koneksi, "SELECT * FROM siswa, smt2 WHERE siswa.nis = smt2.nis AND siswa.nama='$_SESSION[nama]'");
                                     $data = mysqli_fetch_array($sql)
                                     ?>
                                         <tr>

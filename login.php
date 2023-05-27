@@ -27,7 +27,12 @@
         
         //cek session
         if (isset($_SESSION['login'])){
-            echo "<script>window.location.replace('Dashboard.php?') </script>";
+            if (isset($_SESSION['role'])){
+                echo "<script>window.location.replace('Dashboard.php?') </script>";
+            }
+            else{
+                echo "<script>window.location.replace('Siswa.php?') </script>";
+            }
         }
         $queri = "select * from user";
         $hasil = mysqli_query($koneksi, $queri);
@@ -65,13 +70,13 @@
                                             <label>Password</label>
                                             <input type="password" class="form-control form-control-user" name="sandi" id="sandi" placeholder="Masukkan Password"></input>
                                         </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="ingat" name="ingat">
                                                 <label class="custom-control-label" for="ingat">Remember
                                                     Me</label>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         
                                         <input type="submit" name="Login" value="LOGIN" class="btn btn-primary btn-user btn-block"></input>
                                     
@@ -144,9 +149,13 @@
             $nama = $array['nama'];
             $_SESSION['login'] = true;
             $_SESSION['nama'] = $nama;
-            
-            
-            echo "<script>window.location.replace('Dashboard.php?') </script>";
+            if ($array['role'] == "Siswa"){
+                echo "<script>window.location.replace('Siswa.php?') </script>";
+            }
+            else {        
+                $_SESSION['role'] = true;    
+                echo "<script>window.location.replace('Dashboard.php?') </script>";
+            }
         }
         else {
             echo "<script>alert ('Username atau Password tidak valid. Kembali'); </script>";

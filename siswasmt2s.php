@@ -11,6 +11,13 @@
 
     <title>R.O - Tabel Siswa</title>
     <link rel="icon" type="image/x-icon" href="img/LogoDinasPendidikan.png">
+    <style>
+        @media print {
+            #accordionSidebar, #cetak, #dataTable_info, #dataTable_paginate, #dataTable_length, #dataTable_filter, nav {
+                display: none;
+            }
+        }
+    </style>
 
     <!-- Custom fonts for this template-->
     <link href="sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -168,6 +175,8 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+
+                    <input type="submit" name="cetak" id="cetak" value="CETAK" onclick="window.print()" class="btn btn-info btn-sm">
 
                     <!-- Page Heading -->
                     <?php

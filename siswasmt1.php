@@ -12,6 +12,14 @@
     <title>R.O - Tabel Siswa</title>
     <link rel="icon" type="image/x-icon" href="img/LogoDinasPendidikan.png">
 
+    <style>
+        @media print {
+            #accordionSidebar, #cetak, #dataTable_info, #dataTable_paginate, #dataTable_length, #dataTable_filter, nav {
+                display: none;
+            }
+        }
+    </style>
+
     <!-- Custom fonts for this template-->
     <link href="sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -185,8 +193,8 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <button onclick="window.print()">Print this page</button>
-
+                <!-- <a href='prapot1.php?nis='><input type="submit" name="cetak" value="CETAK" class="btn btn-info btn-sm"></a> -->
+                <input type="submit" name="cetak" id="cetak" value="CETAK" onclick="window.print()" class="btn btn-info btn-sm">
                     <!-- Page Heading -->
                     <?php
                     $sql = mysqli_query($koneksi, "SELECT * from siswa where nis='$_GET[nis]'");

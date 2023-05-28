@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2023 at 04:10 PM
+-- Generation Time: May 28, 2023 at 03:44 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.2.0
 
@@ -125,7 +125,7 @@ INSERT INTO `siswa` (`nis`, `nama`, `umur`, `gender`, `agama`, `kelas`) VALUES
 ('1920229010049', 'PRASETYA ARNE NURMAULANI', 11, 'P', 'Islam', '4B'),
 ('1920229010050', 'RAMDAN SAHRONI', 10, 'L', 'Islam', '4B'),
 ('1920229010051', 'RIVERA AIREEN MYEASHA', 10, 'P', 'Protestan', '4B'),
-('1920229010052', 'SALMAN PARISI', 11, 'L', 'Islam', '4B'),
+('1920229010052', 'SALMAN PARISI', 10, 'L', 'Islam', '4B'),
 ('1920229010054', 'TANIA APRILIA', 9, 'P', 'Islam', '4B'),
 ('1920229010055', 'ZAHIRA FEBRIYANI', 10, 'P', 'Islam', '4B'),
 ('1920229010056', 'ZAIYAN AMALINA KHAIRIAH', 10, 'P', 'Islam', '4B'),
@@ -168,7 +168,7 @@ INSERT INTO `smt1` (`nis`, `pai`, `bind`, `ppkn`, `ipas`, `mtk`, `pjok`, `rupa`,
 ('1920229010035', 95, 87, 79, 79, 67, 78, 89, 49, 87, 77, 76),
 ('1920229010036', 85, 78, 77, 89, 90, 78, 85, 75, 80, 76, 87),
 ('1920229010037', 80, 78, 89, 88, 79, 85, 90, 78, 85, 80, 78),
-('1920229010038', 82, 78, 80, 79, 85, 95, 90, 80, 87, 78, 70),
+('1920229010038', 85, 83, 86, 80, 87, 97, 87, 76, 85, 80, 79),
 ('1920229010039', 78, 80, 82, 77, 75, 95, 76, 78, 85, 87, 80),
 ('1920229010040', 80, 87, 94, 85, 83, 78, 80, 77, 84, 90, 95),
 ('1920229010041', 84, 75, 80, 76, 80, 78, 94, 89, 85, 83, 90),
@@ -187,13 +187,66 @@ INSERT INTO `smt1` (`nis`, `pai`, `bind`, `ppkn`, `ipas`, `mtk`, `pjok`, `rupa`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `smt2`
+--
+
+CREATE TABLE `smt2` (
+  `nis` varchar(15) NOT NULL,
+  `pai` int(3) DEFAULT NULL,
+  `bind` int(3) DEFAULT NULL,
+  `ppkn` int(3) DEFAULT NULL,
+  `ipas` int(3) DEFAULT NULL,
+  `mtk` int(3) DEFAULT NULL,
+  `pjok` int(3) DEFAULT NULL,
+  `rupa` int(3) DEFAULT NULL,
+  `musk` int(3) DEFAULT NULL,
+  `tari` int(3) DEFAULT NULL,
+  `tetr` int(3) DEFAULT NULL,
+  `bing` int(3) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `smt2`
+--
+
+INSERT INTO `smt2` (`nis`, `pai`, `bind`, `ppkn`, `ipas`, `mtk`, `pjok`, `rupa`, `musk`, `tari`, `tetr`, `bing`) VALUES
+('1920229010030', 80, 88, 89, 90, 95, 75, 82, 77, 86, 78, 85),
+('1920229010046', 80, 88, 78, 90, 92, 89, 88, 78, 76, 74, 80),
+('1920229010031', 79, 80, 90, 80, 75, 67, 80, 78, 84, 76, 85),
+('1920229010032', 75, 80, 70, 90, 97, 78, 82, 78, 80, 75, 87),
+('2021229020057', 89, 95, 87, 80, 82, 90, 78, 90, 97, 78, 80),
+('1920229010033', 75, 86, 90, 80, 77, 92, 80, 79, 92, 77, 70),
+('1920229010034', 90, 85, 78, 89, 76, 93, 82, 79, 87, 86, 75),
+('1920229010035', 95, 87, 79, 79, 67, 78, 89, 49, 87, 77, 76),
+('1920229010036', 85, 78, 77, 89, 90, 78, 85, 75, 80, 76, 87),
+('1920229010037', 80, 78, 89, 88, 79, 85, 90, 78, 85, 80, 78),
+('1920229010038', 82, 77, 80, 79, 85, 95, 90, 80, 87, 78, 70),
+('1920229010039', 78, 80, 82, 77, 75, 95, 76, 78, 85, 87, 80),
+('1920229010040', 80, 87, 94, 85, 83, 78, 80, 77, 84, 90, 95),
+('1920229010041', 84, 75, 80, 76, 80, 78, 94, 89, 85, 83, 90),
+('1920229010043', 90, 85, 79, 78, 80, 85, 80, 78, 90, 76, 86),
+('1920229010045', 83, 85, 75, 80, 79, 86, 78, 97, 79, 95, 90),
+('1920229010047', 80, 78, 80, 85, 90, 82, 87, 84, 78, 84, 85),
+('1920229010049', 83, 90, 88, 76, 79, 80, 85, 88, 90, 87, 78),
+('1920229010048', 80, 76, 89, 76, 79, 87, 77, 90, 87, 96, 90),
+('1920229010050', 90, 86, 69, 75, 80, 89, 84, 78, 70, 77, 75),
+('1920229010051', 78, 80, 98, 85, 83, 90, 83, 75, 87, 92, 90),
+('1920229010052', 85, 87, 83, 75, 86, 80, 97, 85, 78, 67, 90),
+('1920229010054', 80, 85, 78, 85, 75, 89, 77, 79, 86, 98, 90),
+('1920229010055', 76, 98, 86, 89, 80, 75, 78, 83, 89, 76, 78),
+('1920229010056', 93, 90, 85, 90, 97, 83, 89, 81, 97, 85, 85),
+('1920229010029', 90, 79, 85, 78, 95, 78, 89, 75, 78, 79, 87);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
-  `kid` int(20) NOT NULL,
+  `kid` varchar(20) NOT NULL,
   `password` varchar(15) NOT NULL,
-  `nama` varchar(25) NOT NULL,
+  `nama` varchar(55) NOT NULL,
   `role` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -202,10 +255,35 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`kid`, `password`, `nama`, `role`) VALUES
-(1, 'jayaindonesia45', 'Naufal Avrilzal Irawan', 'Admin'),
-(4, '145', 'TNVR', 'Admin'),
-(123456789, '123', 'Asep Fernandes', 'Guru'),
-(212210420, '420', 'Naufal Avrilzal Irawan', 'Siswa');
+('1', 'jayaindonesia45', 'Naufal Avrilzal Irawan', 'Admin'),
+('123456789', '123', 'Asep Fernandes', 'Guru'),
+('1920229010029', 'alma', 'ALMA FILZAH MARITZA', 'Siswa'),
+('1920229010030', 'angelia', 'ANGELIA FITRI', 'Siswa'),
+('1920229010031', 'aulia', 'AULIA RAHMA', 'Siswa'),
+('1920229010032', 'belvana', 'BELVANA VARISHA SHOUMIE ROCHAENDY', 'Siswa'),
+('1920229010033', 'cakra', 'CAKRA', 'Siswa'),
+('1920229010034', 'dila', 'DILA AL HUSNA', 'Siswa'),
+('1920229010035', 'gilang', 'GILANG ANGGI PRATAMA PUTRA', 'Siswa'),
+('1920229010036', 'indah', 'INDAH ANGGRAENI HALAWA', 'Siswa'),
+('1920229010037', 'kayla', 'KAYLA ASYIFA OKTAVIA', 'Siswa'),
+('1920229010038', 'khansa', 'KHANSA SITI AULIA', 'Siswa'),
+('1920229010039', 'lionel', 'LIONEL ALVARO ILHAM', 'Siswa'),
+('1920229010040', 'meyka', 'MEYKA PUTRI JATI', 'Siswa'),
+('1920229010041', 'lucky', 'MUHAMAD LUCKY ADI PUTRA', 'Siswa'),
+('1920229010043', 'faiq', 'MUHAMMAD FAIQ AL GHIFARI', 'Siswa'),
+('1920229010045', 'rizki', 'MUHAMMAD RIZKI SOPIAN', 'Siswa'),
+('1920229010046', 'nabilla', 'NABILLA PUTRI NOVIANTI', 'Siswa'),
+('1920229010047', 'naima', 'NAIMA MAUDY HASTARI', 'Siswa'),
+('1920229010048', 'natasha', 'NATASHA RATU AYU', 'Siswa'),
+('1920229010049', 'prasetya', 'PRASETYA ARNE NURMAULANI', 'Siswa'),
+('1920229010050', 'ramdan', 'RAMDAN SAHRONI', 'Siswa'),
+('1920229010051', 'rivera', 'RIVERA AIREEN MYEASHA', 'Siswa'),
+('1920229010052', 'salman', 'SALMAN PARISI', 'Siswa'),
+('1920229010054', 'tania', 'TANIA APRILIA', 'Siswa'),
+('1920229010055', 'zahira', 'ZAHIRA FEBRIYANI', 'Siswa'),
+('1920229010056', 'zaiyan', 'ZAIYAN AMALINA KHAIRIAH', 'Siswa'),
+('2021229020057', 'kimora', 'KIMORA BALQIS MARINA SRINIRA', 'Siswa'),
+('4', '145', 'TNVR', 'Admin');
 
 --
 -- Indexes for dumped tables

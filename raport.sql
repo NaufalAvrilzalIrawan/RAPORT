@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2023 at 03:44 PM
+-- Generation Time: May 29, 2023 at 06:49 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.2.0
 
@@ -256,7 +256,6 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`kid`, `password`, `nama`, `role`) VALUES
 ('1', 'jayaindonesia45', 'Naufal Avrilzal Irawan', 'Admin'),
-('123456789', '123', 'Asep Fernandes', 'Guru'),
 ('1920229010029', 'alma', 'ALMA FILZAH MARITZA', 'Siswa'),
 ('1920229010030', 'angelia', 'ANGELIA FITRI', 'Siswa'),
 ('1920229010031', 'aulia', 'AULIA RAHMA', 'Siswa'),
@@ -282,6 +281,7 @@ INSERT INTO `user` (`kid`, `password`, `nama`, `role`) VALUES
 ('1920229010054', 'tania', 'TANIA APRILIA', 'Siswa'),
 ('1920229010055', 'zahira', 'ZAHIRA FEBRIYANI', 'Siswa'),
 ('1920229010056', 'zaiyan', 'ZAIYAN AMALINA KHAIRIAH', 'Siswa'),
+('197703202007012006', 'rina', 'NENENG RINA SANDRAWATI', 'Admin'),
 ('2021229020057', 'kimora', 'KIMORA BALQIS MARINA SRINIRA', 'Siswa'),
 ('4', '145', 'TNVR', 'Admin');
 

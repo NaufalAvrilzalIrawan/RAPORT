@@ -159,7 +159,7 @@
         }
         else {
             echo "<script>alert ('Username atau Password tidak valid. Kembali'); </script>";
-            echo "<script>window.location.replace('login.php') </script>";
+            echo "<script>window.location.replace('index.php') </script>";
         }
     }
 ?>

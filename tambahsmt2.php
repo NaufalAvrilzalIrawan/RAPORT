@@ -196,7 +196,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Pendidikan Agama Islam</label>
-                                        <input type="number" name="pai" required class="form-control" max="100">
+                                        <input type="number" name="pai" class="form-control" max="100">
                                     </div>
                                     <div class="form-group">
                                         <label>Bahasa Indonesia</label>

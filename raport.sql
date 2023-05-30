@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2023 at 06:49 AM
+-- Generation Time: May 30, 2023 at 04:04 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.2.0
 
@@ -107,8 +107,8 @@ INSERT INTO `siswa` (`nis`, `nama`, `umur`, `gender`, `agama`, `kelas`) VALUES
 ('1920229010029', 'ALMA FILZAH MARITZA', 10, 'P', 'Islam', '4B'),
 ('1920229010030', 'ANGELIA FITRI', 10, 'P', 'Islam', '4B'),
 ('1920229010031', 'AULIA RAHMA', 9, 'P', 'Islam', '4B'),
-('1920229010032', 'BELVANA VARISHA SHOUMIE ROCHAENDY', 11, 'P', 'Protestan', '4B'),
-('1920229010033', 'CAKRA', 10, 'L', 'Hindu', '4B'),
+('1920229010032', 'BELVANA VARISHA SHOUMIE ROCHAENDY', 11, 'P', 'Islam', '4B'),
+('1920229010033', 'CAKRA', 10, 'L', 'Islam', '4B'),
 ('1920229010034', 'DILA AL HUSNA', 9, 'P', 'Islam', '4B'),
 ('1920229010035', 'GILANG ANGGI PRATAMA PUTRA', 11, 'L', 'Islam', '4B'),
 ('1920229010036', 'INDAH ANGGRAENI HALAWA', 10, 'P', 'Islam', '4B'),
@@ -121,15 +121,17 @@ INSERT INTO `siswa` (`nis`, `nama`, `umur`, `gender`, `agama`, `kelas`) VALUES
 ('1920229010045', 'MUHAMMAD RIZKI SOPIAN', 11, 'L', 'Islam', '4B'),
 ('1920229010046', 'NABILLA PUTRI NOVIANTI', 10, 'P', 'Islam', '4B'),
 ('1920229010047', 'NAIMA MAUDY HASTARI', 9, 'P', 'Islam', '4B'),
-('1920229010048', 'NATASHA RATU AYU', 10, 'P', 'Protestan', '4B'),
+('1920229010048', 'NATASHA RATU AYU', 10, 'P', 'Islam', '4B'),
 ('1920229010049', 'PRASETYA ARNE NURMAULANI', 11, 'P', 'Islam', '4B'),
 ('1920229010050', 'RAMDAN SAHRONI', 10, 'L', 'Islam', '4B'),
-('1920229010051', 'RIVERA AIREEN MYEASHA', 10, 'P', 'Protestan', '4B'),
+('1920229010051', 'RIVERA AIREEN MYEASHA', 10, 'P', 'Islam', '4B'),
 ('1920229010052', 'SALMAN PARISI', 10, 'L', 'Islam', '4B'),
 ('1920229010054', 'TANIA APRILIA', 9, 'P', 'Islam', '4B'),
 ('1920229010055', 'ZAHIRA FEBRIYANI', 10, 'P', 'Islam', '4B'),
 ('1920229010056', 'ZAIYAN AMALINA KHAIRIAH', 10, 'P', 'Islam', '4B'),
-('2021229020057', 'KIMORA BALQIS MARINA SRINIRA', 11, 'P', 'Islam', '4B');
+('2021229020057', 'KIMORA BALQIS MARINA SRINIRA', 11, 'P', 'Islam', '4B'),
+('2021229020058', 'MIKAIL ASLAM PERMANA', 10, 'L', 'Islam', '4B'),
+('2021229020059', 'SITI ASIYAH', 10, 'P', 'Islam', '4B');
 
 -- --------------------------------------------------------
 
@@ -182,7 +184,9 @@ INSERT INTO `smt1` (`nis`, `pai`, `bind`, `ppkn`, `ipas`, `mtk`, `pjok`, `rupa`,
 ('1920229010052', 85, 87, 83, 75, 86, 80, 97, 85, 78, 67, 90),
 ('1920229010054', 80, 85, 78, 85, 75, 89, 77, 79, 86, 98, 90),
 ('1920229010055', 76, 98, 86, 89, 80, 75, 78, 83, 89, 76, 78),
-('1920229010056', 90, 86, 89, 85, 89, 78, 90, 77, 95, 81, 87);
+('1920229010056', 90, 86, 89, 85, 89, 78, 90, 77, 95, 81, 87),
+('2021229020059', 85, 89, 83, 87, 83, 85, 80, 92, 90, 85, 85),
+('2021229020058', 93, 90, 91, 80, 85, 85, 80, 95, 86, 80, 86);
 
 -- --------------------------------------------------------
 
@@ -235,7 +239,9 @@ INSERT INTO `smt2` (`nis`, `pai`, `bind`, `ppkn`, `ipas`, `mtk`, `pjok`, `rupa`,
 ('1920229010054', 80, 85, 78, 85, 75, 89, 77, 79, 86, 98, 90),
 ('1920229010055', 76, 98, 86, 89, 80, 75, 78, 83, 89, 76, 78),
 ('1920229010056', 93, 90, 85, 90, 97, 83, 89, 81, 97, 85, 85),
-('1920229010029', 90, 79, 85, 78, 95, 78, 89, 75, 78, 79, 87);
+('1920229010029', 90, 79, 85, 78, 95, 78, 89, 75, 78, 79, 87),
+('2021229020059', 89, 89, 96, 87, 89, 69, 57, 66, 96, 89, 79),
+('2021229020058', 90, 87, 84, 87, 83, 78, 86, 95, 76, 86, 87);
 
 -- --------------------------------------------------------
 
@@ -255,7 +261,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`kid`, `password`, `nama`, `role`) VALUES
-('1', 'jayaindonesia45', 'Naufal Avrilzal Irawan', 'Admin'),
+('1324', 'jaya45', 'Naufal Avrilzal Irawan', 'Admin'),
 ('1920229010029', 'alma', 'ALMA FILZAH MARITZA', 'Siswa'),
 ('1920229010030', 'angelia', 'ANGELIA FITRI', 'Siswa'),
 ('1920229010031', 'aulia', 'AULIA RAHMA', 'Siswa'),
@@ -283,7 +289,8 @@ INSERT INTO `user` (`kid`, `password`, `nama`, `role`) VALUES
 ('1920229010056', 'zaiyan', 'ZAIYAN AMALINA KHAIRIAH', 'Siswa'),
 ('197703202007012006', 'rina', 'NENENG RINA SANDRAWATI', 'Admin'),
 ('2021229020057', 'kimora', 'KIMORA BALQIS MARINA SRINIRA', 'Siswa'),
-('4', '145', 'TNVR', 'Admin');
+('2021229020058', 'mikail', 'MIKAIL ASLAM PERMANA', 'Siswa'),
+('2021229020059', 'siti', 'SITI ASIYAH', 'Siswa');
 
 --
 -- Indexes for dumped tables
